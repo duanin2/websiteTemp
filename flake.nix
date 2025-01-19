@@ -14,26 +14,19 @@
           remote = "RPi5:/persist/www/duanin2.top";
           mountPath = "/tmp/cobalt-upload";
         in writeShellScriptBin "upload" ''
-echo "Cleaning old generated site..."
-${lib.getExe cobalt} clean --quiet
-
-echo "Building new site..."
-${lib.getExe cobalt} build --no-drafts --quiet
-
 echo "Mounting SSHFS..."
 mkdir ${mountPath}
 ${lib.getExe sshfs} ${remote} ${mountPath}
 
-echo "Copying site..."
-rm -r ${mountPath}/*
-cp -r ./_site/* ${mountPath}
+echo "Cleaning remote folder..."
+rm -rf ${mountPath}/*
+
+echo "Building new site..."
+${lib.getExe cobalt} build --no-drafts --quiet -d ${mountPath}
 
 echo "Unmounting SSHFS..."
 umount ${mountPath}
 rm -rf ${mountPath}
-
-echo "Cleaning new generated site..."
-${lib.getExe cobalt} clean --quiet
         '')
       ];
     };
