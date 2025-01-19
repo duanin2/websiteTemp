@@ -1,0 +1,17 @@
+ignore:
+  - .gitignore
+  - .envrc
+  - .direnv
+  - flake.nix
+  - flake.lock
+destination: _site
+site:
+  title: Duanin2's Blog
+  description: This is my personal blog and website.
+  base_url: https://duanin2.top
+  sitemap: sitemap.xml
+  data:
+    lang: en_US
+posts:
+  rss: feed.rss
+  jsonfeed: feed.json
