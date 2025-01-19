@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /error
 Disallow: /external
+Allow: /external/catppuccin.css
 Sitemap: https://duanin2.top/sitemap.xml
