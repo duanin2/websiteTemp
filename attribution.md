@@ -11,6 +11,7 @@ data:
 - Template for nix flake somewhere from GitHub
 - Everything under /external is obtained externally
   - catppuccin.css from [GitHub](https://github.com/catppuccin/palette) licensed under [MIT License](https://github.com/catppuccin/palette/blob/main/LICENSE)
+  - cc/ from [Creative Commons Icons](https://creativecommons.org/mission/downloads/) licensed under [Creative Commons Trademark Policy](https://creativecommons.org/policies/)
 - Everything else is written by me, unless stated otherwise
 
 ## Licenses
