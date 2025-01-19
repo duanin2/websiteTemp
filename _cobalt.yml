@@ -13,6 +13,7 @@ site:
   sitemap: sitemap.xml
   data:
     lang: en_US
+    creationYear: "2025"
 posts:
   rss: feed.rss
   jsonfeed: feed.json
