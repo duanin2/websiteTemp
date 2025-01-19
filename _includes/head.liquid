@@ -8,10 +8,14 @@
 <meta property="twitter:title" content="{{ page.title }}">
 <meta name="author" content="duanin2">
 <meta name="fediverse:creator" content="@duanin2@mastodon.arch-linux.cz">
-<meta property="og:url" content="{{ page.permalink }}">
+{% capture url %}{{ site.base_url }}/{{ page.permalink }}{% endcapture %}
+<link href="{{ url }}" rel="canonical">
+<meta property="og:url" content="{{ url }}">
 <meta property="og:locale" content="{{ page.data.language }}">
 {% if page.description.size > 0 %}
 <meta name="description" content="{{ page.description }}">
 <meta property="og:description" content="{{ page.description }}">
 <meta property="twitter:description" content="{{ page.description }}">
 {% endif %}
+<link href="https://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" rel="license">
+<link href="{{ site.base_url }}" rel="author">
