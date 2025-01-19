@@ -10,6 +10,7 @@ data:
 - <a href="https://github.com/duanin2">GitHub</a>
 - <a href="https://mastodon.arch-linux.cz/@duanin2">Mastodon</a>
 	- <a href="https://bsky.app/profile/duanin2.top">Bluesky, bridged from Mastodon</a>
+- <a rel="me" href="https://duanin2.itch.io">itch.io</a>
 
 ## Contact me
 
