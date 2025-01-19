@@ -9,10 +9,9 @@
 
 a {
 	text-decoration: none;
-
-	&:hover {
-		text-decoration: underline;
-	}
+}
+a:hover {
+	text-decoration: underline;
 }
 
 body {
@@ -34,23 +33,21 @@ header {
 	margin: 10px 10px;
 
 	border-radius: 10px;
-
-	details {
-		width: 150px;
-
-		padding: 10px;
-
-		summary {
-			text-align: center;
-
-			list-style: none;
-		}
-
-		li {
-			list-style: none;
-		}
-	}
 }
+header details {
+	width: 150px;
+
+	padding: 10px;
+}
+header details summary {
+	text-align: center;
+
+	list-style: none;
+}
+header details li {
+	list-style: none;
+}
+
 main {
 	width: fit-content;
 	min-width: 200px;
@@ -59,26 +56,23 @@ main {
 	padding: 20px;
 
 	border-radius: 10px;
-
-	h1, h2, h3, h4, h5, h6 {
-		margin: 10px 0;
-	}
-
-	p {
-		margin: 5px 0;
-	}
-
-	li {
-		margin-left: 15px;
-	}
-
-	:first-child {
-		margin-top: 0;
-	}
-	:last-child {
-		margin-bottom: 0;
-	}
 }
+main h1, main h2, main h3, main h4, main h5, main h6 {
+	margin: 10px 0;
+}
+main p {
+	margin: 5px 0;
+}
+main li {
+	margin-left: 15px;
+}
+main :first-child {
+	margin-top: 0;
+}
+main :last-child {
+	margin-bottom: 0;
+}
+
 footer {
 	width: 100%;
 
@@ -86,12 +80,11 @@ footer {
 	margin: 10px 0 0 0;
 
 	text-align: center;
-
-	img.cc {
-		height: 22px !important;
-		margin-left: 3px;
-		vertical-align: text-bottom;
-	}
+}
+footer img.cc {
+	height: 22px !important;
+	margin-left: 3px;
+	vertical-align: text-bottom;
 }
 
 @media (prefers-color-scheme: light) {
@@ -109,10 +102,9 @@ footer {
 
 	a {
 		color: var(--ctp-latte-blue);
-	
-		&:visited {
-			color: var(--ctp-latte-green);
-		}
+	}
+	a:visited {
+		color: var(--ctp-latte-green);
 	}
 
 	::selection {
@@ -134,10 +126,9 @@ footer {
 
 	a {
 		color: var(--ctp-frappe-blue);
-	
-		&:visited {
-			color: var(--ctp-frappe-green);
-		}
+	}
+	a:visited {
+		color: var(--ctp-frappe-green);
 	}
 
 	::selection {
