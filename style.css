@@ -43,6 +43,8 @@ header details summary {
 	text-align: center;
 
 	list-style: none;
+
+	cursor: pointer;
 }
 header details li {
 	list-style: none;
