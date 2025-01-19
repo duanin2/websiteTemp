@@ -4,6 +4,7 @@ ignore:
   - .direnv
   - flake.nix
   - flake.lock
+  - LICENSE.txt
 destination: _site
 site:
   title: Duanin2's Blog
