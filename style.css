@@ -80,6 +80,9 @@ main .footnote-definition p {
 main .footnote-definition {
 	font-size: small;
 }
+main .published {
+	font-size: small;
+}
 
 footer {
 	width: 100%;

@@ -10,6 +10,7 @@
     {% include "menu.liquid" %}
     <main>
       <h1>{{ page.title }}</h1>
+      <div class="published">Published on {{ page.published_date | date: "%d.%m.%Y at %H:%M in %Z" }}.</div>
       {{ page.content }}
     </main>
     {% include "footer.liquid" %}
