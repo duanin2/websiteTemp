@@ -92,6 +92,10 @@ footer {
 
 	text-align: center;
 }
+footer .badges img {
+	border: 0;
+	height: 31px;
+}
 
 @media (prefers-color-scheme: light) {
 	html {
