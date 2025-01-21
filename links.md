@@ -24,3 +24,4 @@ data:
 ## Other links
 - [My friend](http://lasermtv07.com/), also on [Bluesky](https://bsky.app/profile/lasermtv07.bsky.social)
 - [Another friend](https://bsky.app/profile/septavelkomozny.czesky.online)
+- [This page is designed to last.](http://jeffhuang.com/designed_to_last/)
