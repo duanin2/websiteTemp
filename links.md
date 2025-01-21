@@ -6,17 +6,20 @@ data:
 ---
 
 ## Webrings
-[&larr;](https://ctp-webr.ing/duanin2/previous)
+{% assign ctp-slug = "duanin2" %}
+[&larr;](https://ctp-webr.ing/{{ ctp-slug }}/previous)
 [Catppuccin Webring](https://ctp-webr.ing/)
-[&rarr;](https://ctp-webr.ing/duanin2/next)
+[&rarr;](https://ctp-webr.ing/{{ ctp-slug }}/next)
 
-[&larr;](https://cyberworld.cartoon-aa.xyz/prev/duanin2)
+{% assign cyberworld-slug = "duanin2" %}
+[&larr;](https://cyberworld.cartoon-aa.xyz/prev/{{ cyberworld-slug }})
 [Cyber World Webring](https://cyberworld.cartoon-aa.xyz/)
-[&rarr;](https://cyberworld.cartoon-aa.xyz/next/duanin2)
+[&rarr;](https://cyberworld.cartoon-aa.xyz/next/{{ cyberworld-slug }})
 
-[&larr;](https://fediring.net/previous?host=duanin2.top%2Flinks.html)
+{% assign fediring-slug = "duanin2.top/links.html" | url_encode %}
+[&larr;](https://fediring.net/previous?host={{ fediring-slug }})
 [Fediring Webring](https://fediring.net/)
-[&rarr;](https://fediring.net/next?host=duanin2.top%2Flinks.html)
+[&rarr;](https://fediring.net/next?host={{ fediring-slug }})
 
 ## Other links
 - [My friend](http://lasermtv07.com/), also on [Bluesky](https://bsky.app/profile/lasermtv07.bsky.social)
