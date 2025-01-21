@@ -92,11 +92,6 @@ footer {
 
 	text-align: center;
 }
-footer img.cc {
-	height: 22px !important;
-	margin-left: 3px;
-	vertical-align: text-bottom;
-}
 
 @media (prefers-color-scheme: light) {
 	html {
