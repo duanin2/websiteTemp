@@ -74,6 +74,12 @@ main :first-child {
 main :last-child {
 	margin-bottom: 0;
 }
+main .footnote-definition p {
+	display: inline-block;
+}
+main .footnote-definition {
+	font-size: small;
+}
 
 footer {
 	width: 100%;
