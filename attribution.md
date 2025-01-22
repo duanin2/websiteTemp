@@ -13,6 +13,7 @@ data:
   - catppuccin.css from [GitHub](https://github.com/catppuccin/palette) licensed under the [MIT License](https://github.com/catppuccin/palette/blob/main/LICENSE)
   - vcss.png from [W3C CSS validator](https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https://duanin2.top&usermedium=all&vextwarning=&warning=1)
   - valid-rss-rogers.png from [W3C RSS validator](https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fduanin2.top/feed.rss)
+  - ai-label_banner-no-ai-used.svg from [AI Label](https://ai-label.org/) licensed under the [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
 - Everything else is written by [me](https://duanin2.top), unless stated otherwise
 
 ## Licenses
