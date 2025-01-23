@@ -103,11 +103,8 @@ footer .badges img {
 		color: var(--ctp-latte-text);
 	}
 
-	header, footer {
-		background-color: var(--ctp-latte-surface0);
-	}
-	main {
-		background-color: var(--ctp-latte-base);
+	header, main, footer {
+		background: var(--ctp-latte-base);
 	}
 
 	a {
@@ -127,11 +124,8 @@ footer .badges img {
 		color: var(--ctp-frappe-text);
 	}
 
-	header, footer {
-		background-color: var(--ctp-frappe-surface0);
-	}
-	main {
-		background-color: var(--ctp-frappe-base);
+	header, main, footer {
+		background: var(--ctp-frappe-base);
 	}
 
 	a {
