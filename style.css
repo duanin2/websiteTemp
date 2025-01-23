@@ -26,13 +26,18 @@ body {
 	align-content: center;
 }
 
+header, main {
+	border-radius: 10px;
+}
+header details summary, footer {
+	text-align: center;
+}
+
 header {
 	position: sticky;
 	align-self: flex-start;
 
-	margin: 10px 10px;
-
-	border-radius: 10px;
+	margin: 10px;
 }
 header details {
 	width: 150px;
@@ -40,13 +45,9 @@ header details {
 	padding: 10px;
 }
 header details summary {
-	text-align: center;
-
-	list-style: none;
-
 	cursor: pointer;
 }
-header details li {
+header details * {
 	list-style: none;
 }
 
@@ -56,8 +57,6 @@ main {
 	max-width: 95%;
 
 	padding: 20px;
-
-	border-radius: 10px;
 }
 main h1, main h2, main h3, main h4, main h5, main h6 {
 	margin: 10px 0;
@@ -77,10 +76,7 @@ main :last-child {
 main .footnote-definition p {
 	display: inline-block;
 }
-main .footnote-definition {
-	font-size: small;
-}
-main .published {
+main .footnote-definition, main .published {
 	font-size: small;
 }
 
@@ -89,8 +85,6 @@ footer {
 
 	padding: 10px 0;
 	margin: 10px 0 0 0;
-
-	text-align: center;
 }
 footer .badges img {
 	border: 0;
@@ -99,7 +93,7 @@ footer .badges img {
 
 @media (prefers-color-scheme: light) {
 	html {
-		background-color: var(--ctp-latte-crust);
+		background: var(--ctp-latte-crust);
 		color: var(--ctp-latte-text);
 	}
 
@@ -115,12 +109,12 @@ footer .badges img {
 	}
 
 	::selection {
-		background-color: rgba(var(--ctp-latte-overlay2-rgb) / 0.8);
+		background: rgba(var(--ctp-latte-overlay2-rgb) / 0.8);
 	}
 }
 @media (prefers-color-scheme: dark) {
 	html {
-		background-color: var(--ctp-frappe-crust);
+		background: var(--ctp-frappe-crust);
 		color: var(--ctp-frappe-text);
 	}
 
@@ -136,6 +130,6 @@ footer .badges img {
 	}
 
 	::selection {
-		background-color: rgba(var(--ctp-frappe-overlay2-rgb) / 0.8);
+		background: rgba(var(--ctp-frappe-overlay2-rgb) / 0.8);
 	}
 }
