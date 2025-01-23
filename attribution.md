@@ -19,4 +19,4 @@ data:
 ## Licenses
 Created by [Duanin2](https://duanin2.top) in {{ site.data.creationYear }} & last edited in {{ site.time | date: "%Y" }}.
 - Content: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1)
-- The source code like templates, CSS & others: [MIT License](https://choosealicense.com/licenses/mit/)
+- The source code like templates, CSS & others: [source](https://github.com/duanin2/websiteTemp) & [MIT License](https://github.com/duanin2/websiteTemp/blob/main/LICENSE.txt)
