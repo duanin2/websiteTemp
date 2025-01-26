@@ -26,29 +26,36 @@ body {
 	align-content: center;
 }
 
-header, main {
-	border-radius: 10px;
-}
-header details summary, footer {
-	text-align: center;
-}
+.menu-container, main { border-radius: 10px; }
 
 header {
 	position: sticky;
 	align-self: flex-start;
 
-	margin: 10px;
+	width: 100%;
 }
-header details {
-	width: 150px;
 
+.menu-container {
+	width: calc(100% - 20px);
+
+	margin: 10px;
 	padding: 10px;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-content: space-around;
+	align-items: center;
 }
-header details summary {
-	cursor: pointer;
+.menu-container * {
+	flex-grow: 100;
+	text-align: center;
 }
-header details * {
-	list-style: none;
+.menu-container .menu-toggle { cursor: pointer; }
+.menu-container.close :not(.menu-toggle) { display: none; }
+@media (max-width: 900px) {
+	.menu-container { flex-direction: column; }
+	.menu-container * { width: 100%; }
 }
 
 main {
@@ -97,9 +104,7 @@ footer .badges img {
 		color: var(--ctp-latte-text);
 	}
 
-	header, main, footer {
-		background: var(--ctp-latte-base);
-	}
+	.menu-container, main, footer { background: var(--ctp-latte-base); }
 
 	a {
 		color: var(--ctp-latte-blue);
@@ -118,9 +123,7 @@ footer .badges img {
 		color: var(--ctp-frappe-text);
 	}
 
-	header, main, footer {
-		background: var(--ctp-frappe-base);
-	}
+	.menu-container, main, footer { background: var(--ctp-frappe-base); }
 
 	a {
 		color: var(--ctp-frappe-blue);
