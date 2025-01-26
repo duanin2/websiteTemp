@@ -6,13 +6,8 @@
 
 	box-sizing: border-box;
 }
-
-a {
-	text-decoration: none;
-}
-a:hover {
-	text-decoration: underline;
-}
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
 
 body {
 	height: 100vh;
@@ -60,38 +55,25 @@ header {
 
 main {
 	width: fit-content;
-	min-width: 200px;
 	max-width: 95%;
 
 	padding: 20px;
 }
-main h1, main h2, main h3, main h4, main h5, main h6 {
-	margin: 10px 0;
-}
-main p {
-	margin: 5px 0;
-}
-main li {
-	margin-left: 15px;
-}
-main :first-child {
-	margin-top: 0;
-}
-main :last-child {
-	margin-bottom: 0;
-}
-main .footnote-definition p {
-	display: inline-block;
-}
-main .footnote-definition, main .published {
-	font-size: small;
-}
+main h1, main h2, main h3, main h4, main h5, main h6 { margin: 10px 0; }
+main p { margin: 5px 0; }
+main li { margin-left: 15px; }
+main :first-child { margin-top: 0; }
+main :last-child { margin-bottom: 0; }
+main .footnote-definition p { display: inline-block; }
+main .footnote-definition, main .published { font-size: small; }
 
 footer {
 	width: 100%;
 
 	padding: 10px 0;
 	margin: 10px 0 0 0;
+
+	text-align: center;
 }
 footer .badges img {
 	border: 0;
@@ -106,16 +88,10 @@ footer .badges img {
 
 	.menu-container, main, footer { background: var(--ctp-latte-base); }
 
-	a {
-		color: var(--ctp-latte-blue);
-	}
-	a:visited {
-		color: var(--ctp-latte-green);
-	}
+	a { color: var(--ctp-latte-blue); }
+	a:visited { color: var(--ctp-latte-green); }
 
-	::selection {
-		background: rgba(var(--ctp-latte-overlay2-rgb) / 0.8);
-	}
+	::selection { background: rgba(var(--ctp-latte-overlay2-rgb) / 0.8); }
 }
 @media (prefers-color-scheme: dark) {
 	html {
@@ -125,14 +101,8 @@ footer .badges img {
 
 	.menu-container, main, footer { background: var(--ctp-frappe-base); }
 
-	a {
-		color: var(--ctp-frappe-blue);
-	}
-	a:visited {
-		color: var(--ctp-frappe-green);
-	}
+	a { color: var(--ctp-frappe-blue); }
+	a:visited { color: var(--ctp-frappe-green); }
 
-	::selection {
-		background: rgba(var(--ctp-frappe-overlay2-rgb) / 0.8);
-	}
+	::selection { background: rgba(var(--ctp-frappe-overlay2-rgb) / 0.8); }
 }
