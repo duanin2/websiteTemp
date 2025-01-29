@@ -28,6 +28,7 @@ data:
 
 ### Clubs
 - the [1MB Club](https://1mb.club)
+- the [250KB Club](https://250kb.club/)
 
 ## Friends
 - [My friend](http://lasermtv07.com/), also on [Bluesky](https://bsky.app/profile/lasermtv07.bsky.social)
