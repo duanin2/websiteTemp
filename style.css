@@ -13,7 +13,7 @@ header, footer, .menu-container { width: 100%; }
 
 body, .menu-container, .pages, .posts {
 	display: flex;
-	
+
 	flex-wrap: nowrap;
 	align-content: center;
 }
@@ -79,6 +79,12 @@ footer {
 footer .badges img {
 	border: 0;
 	height: 31px;
+}
+
+.pages, .posts {
+	width: 100px;
+
+	margin: 0 auto;
 }
 
 @media (prefers-color-scheme: light) {
