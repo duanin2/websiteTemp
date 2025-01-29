@@ -92,3 +92,9 @@ I use VSCodium[^26] as my code editor.
 [^25]: [Arkenfox user.js](https://github.com/arkenfox/user.js)
 
 [^26]: [VSCodium](https://vscodium.com/)
+
+<div hidden>
+<a href="https://xn--sr8hvo.ws/previous">←</a>
+An <a href="https://xn--sr8hvo.ws">IndieWeb Webring</a> 🕸💍
+<a href="https://xn--sr8hvo.ws/next">→</a>
+</div>

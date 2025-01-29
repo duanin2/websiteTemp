@@ -22,6 +22,10 @@ data:
 [Fediring Webring](https://fediring.net/)
 [&rarr;](https://fediring.net/next?host={{ fediring-slug }})
 
+[&larr;](https://xn--sr8hvo.ws/previous)
+[IndieWeb Webring](https://xn--sr8hvo.ws)
+[&rarr;](https://xn--sr8hvo.ws/next)
+
 ### Clubs
 - the [1MB Club](https://1mb.club)
 
