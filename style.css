@@ -47,9 +47,7 @@ header {
 	flex-grow: 100;
 	text-align: center;
 }
-.menu-container .menu-toggle { cursor: pointer; }
-.menu-container.close :not(.menu-toggle) { display: none; }
-@media (max-width: 900px) {
+@media (max-width: 800px) {
 	.menu-container { flex-direction: column; }
 	.menu-container * { width: 100%; }
 }
