@@ -5,6 +5,7 @@ ignore:
   - flake.nix
   - flake.lock
   - LICENSE.txt
+  - favicon-source.svg
 destination: _site
 site:
   title: Duanin2's Blog

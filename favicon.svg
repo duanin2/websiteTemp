@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16"
+   height="16"
+   viewBox="0 0 16 16"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1">
+    <rect
+       style="fill:#303446;fill-opacity:1;stroke-width:0.968849"
+       id="rect1"
+       width="8"
+       height="16"
+       x="0"
+       y="0" />
+    <rect
+       style="fill:#a6d189;fill-opacity:1;stroke-width:1.3238"
+       id="rect2"
+       width="8"
+       height="16"
+       x="8"
+       y="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5122px;font-family:Monospace;-inkscape-font-specification:Monospace;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#303446;fill-opacity:1;stroke-width:1.04268"
+       x="8.0431376"
+       y="12.668727"
+       id="text1"
+       transform="scale(1.0134981,0.98668167)"><tspan
+         id="tspan1"
+         x="8.0431376"
+         y="12.668727"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace;fill:#303446;fill-opacity:1;stroke-width:1.04268">D</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.556px;font-family:Monospace;-inkscape-font-specification:Monospace;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#a6d189;fill-opacity:1;stroke-width:0.963002"
+       x="0.6413759"
+       y="12.19428"
+       id="text4"
+       transform="scale(0.97554025,1.025073)"><tspan
+         id="tspan4"
+         x="0.6413759"
+         y="12.19428"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Monospace;-inkscape-font-specification:Monospace;fill:#a6d189;fill-opacity:1;stroke-width:0.963002">λ</tspan></text>
+  </g>
+</svg>
