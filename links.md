@@ -26,6 +26,11 @@ data:
 [IndieWeb Webring](https://xn--sr8hvo.ws)
 [&rarr;](https://xn--sr8hvo.ws/next)
 
+{% assign staticquest-slug = "duanin2.top" | url_encode %}
+[&larr;](https://static.quest/previous?host={{ staticquest-slug }})
+[Static.Quest Webring](https://static.quest/)
+[&rarr;](https://static.quest/next?host={{ staticquest-slug }})
+
 ### Clubs
 - the [1MB Club](https://1mb.club)
 - the [250KB Club](https://250kb.club/)
