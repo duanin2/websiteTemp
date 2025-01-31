@@ -9,11 +9,10 @@ data:
 ## Attribution
 - Menu code, taken from [artemislena.eu](https://codeberg.org/artemislena/artemislena.eu) licensed under the [Unlicense](https://opensource.org/license/unlicense/)
 - Template for nix flake somewhere from GitHub, [possibly one of these](https://github.com/search?q=description+%3D+%22A+basic+flake+with+a+shell%22%3B+++inputs.nixpkgs.url+%3D+%22github%3ANixOS%2Fnixpkgs%2Fnixpkgs-unstable%22%3B+++inputs.flake-utils.url+%3D+%22github%3Anumtide%2Fflake-utils%22%3B&type=code)
-- Everything under /external is obtained externally
-  - catppuccin.css from [GitHub](https://github.com/catppuccin/palette) licensed under the [MIT License](https://github.com/catppuccin/palette/blob/main/LICENSE)
-  - vcss.png from [W3C CSS validator](https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https://duanin2.top&usermedium=all&vextwarning=&warning=1)
-  - valid-rss-rogers.png from [W3C RSS validator](https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fduanin2.top/feed.rss)
-  - ai-label_banner-no-ai-used.svg from [AI Label](https://ai-label.org/) licensed under the [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
+- catppuccin.css from [GitHub](https://github.com/catppuccin/palette) licensed under the [MIT License](https://github.com/catppuccin/palette/blob/main/LICENSE) and stripped down to only used CSS variables
+- validcss-badge.png is [vcss](https://jigsaw.w3.org/css-validator/images/vcss) from [W3C CSS validator](https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https://duanin2.top&usermedium=all&vextwarning=&warning=1)
+- validrss-badge.png is [valid-rss-rogers.png](https://validator.w3.org/feed/images/valid-rss-rogers.png) from [W3C RSS validator](https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fduanin2.top/feed.rss)
+- no-ai-badge.svg is rendered from the [image pack](https://ai-label.org/image-pack/image-pack.zip) from [AI Label](https://ai-label.org/) licensed under the [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
 - Everything else is written by [me](https://duanin2.top), unless stated otherwise
 
 ## Licenses
