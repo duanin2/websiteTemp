@@ -12,7 +12,7 @@ data:
 - catppuccin.css from [GitHub](https://github.com/catppuccin/palette) licensed under the [MIT License](https://github.com/catppuccin/palette/blob/main/LICENSE) and stripped down to only used CSS variables
 - validcss-badge.png is [vcss](https://jigsaw.w3.org/css-validator/images/vcss) from [W3C CSS validator](https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https://duanin2.top&usermedium=all&vextwarning=&warning=1)
 - validrss-badge.png is [valid-rss-rogers.png](https://validator.w3.org/feed/images/valid-rss-rogers.png) from [W3C RSS validator](https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fduanin2.top/feed.rss)
-- no-ai-badge.svg is rendered from the [image pack](https://ai-label.org/image-pack/image-pack.zip) from [AI Label](https://ai-label.org/) licensed under the [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
+- no-ai-badge.png is rendered from the [image pack](https://ai-label.org/image-pack/image-pack.zip) from [AI Label](https://ai-label.org/) licensed under the [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
 - Everything else is written by [me](https://duanin2.top), unless stated otherwise
 
 ## Licenses
