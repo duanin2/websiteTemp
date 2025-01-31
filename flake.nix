@@ -53,6 +53,15 @@ def main [
 }
         '';
 
+        build = writeShellScriptBin "build" ''
+${lib.getExe generate}
+
+echo "Cleaning local folder..."
+rm -rf ./_site/*
+
+echo "Building new site..."
+${lib.getExe cobalt} build --no-drafts --quiet
+        '';
         upload = (let
           remote = "RPi5:/persist/www/duanin2.top";
           mountPath = "/tmp/cobalt-upload";
@@ -84,6 +93,7 @@ ${lib.getExe cobalt} serve --drafts
         generate
         stripCSS
 
+        build
         upload
         serve
       ];
