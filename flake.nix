@@ -57,6 +57,8 @@ def main [
           remote = "RPi5:/persist/www/duanin2.top";
           mountPath = "/tmp/cobalt-upload";
         in writeShellScriptBin "upload" ''
+${lib.getExe generate}
+
 echo "Mounting SSHFS..."
 mkdir ${mountPath}
 ${lib.getExe sshfs} ${remote} ${mountPath}
@@ -64,30 +66,12 @@ ${lib.getExe sshfs} ${remote} ${mountPath}
 echo "Cleaning remote folder..."
 rm -rf ${mountPath}/*
 
-${lib.getExe generate}
-
-${lib.getExe generate}
-
 echo "Building new site..."
 ${lib.getExe cobalt} build --no-drafts --quiet -d ${mountPath}
 
 echo "Unmounting SSHFS..."
 umount ${mountPath}
 rm -rf ${mountPath}
-        '');
-        serve = writeShellScriptBin "serve" ''
-${lib.getExe generate}
-
-${lib.getExe cobalt} serve --drafts
-        '';
-      in [
-        cobalt
-
-        generate
-        stripCSS
-
-        upload
-        serve
         '');
         serve = writeShellScriptBin "serve" ''
 ${lib.getExe generate}
