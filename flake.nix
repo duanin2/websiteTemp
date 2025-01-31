@@ -14,7 +14,7 @@
         generate = let
           imagesLocation = "./images";
 
-          generateIconPNG = width: inkscapeExport "-C -w ${toString width} -h ${toString width}" "./favicon-source.svg" "${imagesLocation}/icon-${toString width}px.png";
+          generateIconPNG = width: inkscapeExport "-C -w ${toString width} -h ${toString width}" "./data/favicon-source.svg" "${imagesLocation}/icon-${toString width}px.png";
         in writeShellScriptBin "generate" ''
 echo "Cleaning images..."
 rm -rf ${imagesLocation}/*
@@ -66,12 +66,28 @@ rm -rf ${mountPath}/*
 
 ${lib.getExe generate}
 
+${lib.getExe generate}
+
 echo "Building new site..."
 ${lib.getExe cobalt} build --no-drafts --quiet -d ${mountPath}
 
 echo "Unmounting SSHFS..."
 umount ${mountPath}
 rm -rf ${mountPath}
+        '');
+        serve = writeShellScriptBin "serve" ''
+${lib.getExe generate}
+
+${lib.getExe cobalt} serve --drafts
+        '';
+      in [
+        cobalt
+
+        generate
+        stripCSS
+
+        upload
+        serve
         '');
         serve = writeShellScriptBin "serve" ''
 ${lib.getExe generate}
