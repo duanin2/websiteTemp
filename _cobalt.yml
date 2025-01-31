@@ -6,6 +6,7 @@ ignore:
   - flake.lock
   - LICENSE.txt
   - data
+  - README.md
 destination: _site
 site:
   title: Duanin2's Blog
