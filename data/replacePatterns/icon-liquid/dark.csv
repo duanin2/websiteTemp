@@ -1,0 +1,3 @@
+pattern,replace
+{{ media-query }},prefers-color-scheme: {{ color-scheme }}
+{{ color-scheme }},dark

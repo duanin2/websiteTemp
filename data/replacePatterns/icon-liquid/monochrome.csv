@@ -1,0 +1,3 @@
+pattern,replace
+{{ media-query }},monochrome
+{{ color-scheme }},monochrome
