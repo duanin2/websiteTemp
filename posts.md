@@ -20,9 +20,9 @@ pagination:
 {% endfor %}
 
 <nav class="pages" aria-label="Pages">
-  <a href="/{{ paginator.first_index_permalink }}" aria-label="first">&lt;&lt;</a>
-  {%- if paginator.previous_index_permalink %}<a href="/{{ paginator.previous_index_permalink }}" aria-label="previous">&lt;</a>{% else %}<div>&lt;</div>{% endif %}
+  <a rel="prev" href="/{{ paginator.first_index_permalink }}" aria-label="first">&lt;&lt;</a>
+  {%- if paginator.previous_index_permalink %}<a rel="prev" href="/{{ paginator.previous_index_permalink }}" aria-label="previous">&lt;</a>{% else %}<div>&lt;</div>{% endif %}
   <a href="/{{ paginator.index_permalink }}" aria-label="current">{{ paginator.index }}</a>
-  {%- if paginator.next_index_permalink %}<a href="/{{ paginator.next_index_permalink }}" aria-label="next">&gt;</a>{% else %}<div>&gt;</div>{% endif %}
-  <a href="/{{ paginator.last_index_permalink }}" aria-label="last">&gt;&gt;</a>
+  {%- if paginator.next_index_permalink %}<a rel="next" href="/{{ paginator.next_index_permalink }}" aria-label="next">&gt;</a>{% else %}<div>&gt;</div>{% endif %}
+  <a rel="next" href="/{{ paginator.last_index_permalink }}" aria-label="last">&gt;&gt;</a>
 </nav>
