@@ -87,6 +87,17 @@ footer .badges img {
 	margin: 0 auto;
 }
 
+.johnvertisement {
+	display: block;
+
+	margin: auto;
+
+	width: 732px;
+	height: 94px;
+	
+	border: none;
+}
+
 @media (prefers-color-scheme: light) {
 	html {
 		background: var(--ctp-latte-crust);
