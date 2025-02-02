@@ -14,38 +14,56 @@
         inkscapeExport = extraParams: inputFile: outputFile: "${lib.getExe inkscape} -o \"${outputFile}\" ${extraParams} \"${inputFile}\"";
 
         generate = let
-          imagesLocation = "./images";
+          imagesLocation = "images";
 
-          generateIconPNG = colorScheme: width: inkscapeExport "-C -w ${toString width} -h ${toString width}" "${imagesLocation}/icons/${colorScheme}/any.svg" "${imagesLocation}/icons/${colorScheme}/${toString width}.png";
+          sizeToSizeString = size: "${toString size}x${toString size}";
+          getLargestElement = array: (builtins.elemAt (builtins.sort (a: b: a > b) array) 0);
 
-          generateIconsColorScheme = colorScheme: ''
-${lib.getExe patternReplace} $TmpDir/template.svg ${imagesLocation}/icons/${colorScheme}/any.svg ./data/replacePatterns/icon-svg/${colorScheme}.csv
-${generateIconPNG "${colorScheme}" 16}
-${generateIconPNG "${colorScheme}" 32}
-${generateIconPNG "${colorScheme}" 48}
-${generateIconPNG "${colorScheme}" 64}
-${generateIconPNG "${colorScheme}" 120}
-${generateIconPNG "${colorScheme}" 152}
-${generateIconPNG "${colorScheme}" 167}
-${generateIconPNG "${colorScheme}" 180}
-${generateIconPNG "${colorScheme}" 192}
+          getIconLocation = colorScheme: width: type: "${imagesLocation}/icons/${colorScheme}/${toString width}.${type}";
+
+          generateIcon = colorScheme: width: let
+            SVGLocation = "${imagesLocation}/icons/${colorScheme}/any.svg";
+            WebPLocation = getIconLocation colorScheme width "webp";
+            PNGLocation = getIconLocation colorScheme width "png";
+            JPEGLocation = getIconLocation colorScheme width "jpg";
+          in ''
+${inkscapeExport "-C -w ${toString width} -h ${toString width}" SVGLocation PNGLocation}
+${lib.getExe imagemagick} ${PNGLocation} ${WebPLocation}
+${lib.getExe imagemagick} ${PNGLocation} ${JPEGLocation}
           '';
-          generateIconsLiquid = colorScheme: "${lib.getExe patternReplace} ./data/icons.liquid ./_includes/generated/icons/${colorScheme}.liquid ./data/replacePatterns/icon-liquid/${colorScheme}.csv";
+          generateIconsColorScheme = colorScheme: ''
+${lib.getExe patternReplace} $TmpDir/template.svg ${imagesLocation}/icons/${colorScheme}/any.svg data/replacePatterns/icon-svg/${colorScheme}.csv
+${builtins.concatStringsSep "\n" (map (generateIcon "${colorScheme}") iconSizes)}
+${lib.getExe imagemagick} ${builtins.concatStringsSep " " (map (width: getIconLocation colorScheme width "png") iconSizes)} ./favicon.ico
+${if (builtins.length appleTouchIconSizes) > 0 then "cp ${getIconLocation colorScheme (getLargestElement appleTouchIconSizes) "png"} ./apple-touch-icon.png" else ""}
+          '';
+          generateIconsLiquid = colorScheme: "${lib.getExe patternReplace} ${iconsLiquidTemplate} _includes/generated/icons/${colorScheme}.liquid ./data/replacePatterns/icon-liquid/${colorScheme}.csv";
+          appleTouchIconSizes = builtins.sort (a: b: a > b) [ 180 167 152 120 ];
+          iconSizes = builtins.sort (a: b: a > b) (appleTouchIconSizes ++ [ 192 64 48 32 16 ]);
+          iconsLiquidTemplate = writeText "icons.liquid" ''
+<link rel="icon" type="image/svg+xml" sizes="any" href="/images/icons/{{ color-scheme }}/any.svg">
+${builtins.concatStringsSep "\n" (map (size: builtins.concatStringsSep "\n" (map (type: "<link rel=\"icon${if (builtins.elem size appleTouchIconSizes) then " apple-touch-icon" else ""}\" type=\"${type.type}\" sizes=\"${sizeToSizeString size}\" href=\"/${getIconLocation "{{ color-scheme }}" size type.ext}\">") [ {type = "image/webp"; ext = "webp";} {type = "image/png"; ext = "png";} {type = "image/jpg"; ext = "jpg";} ])) iconSizes)}
+<link rel="icon apple-touch-icon" type="image/png" sizes="${sizeToSizeString (getLargestElement appleTouchIconSizes)}" href="/apple-touch-icon.png">
+${builtins.concatStringsSep "\n" (map (type: "<link rel=\"icon\" type=\"${type}\" sizes=\"${builtins.concatStringsSep " " (map sizeToSizeString iconSizes)}\" href=\"/favicon.ico\">") [ "image/vnd.microsoft.icon" "image/x-icon" ])}
+          '';
         in writeShellScriptBin "generate" ''
+echo "Creating the temporary directory..."
+TmpDir=$(mktemp -d)
+
 echo "Cleaning images..."
-rm -rf ${imagesLocation}/*
+rm -rf ${imagesLocation}/* ./favicon.ico ./apple-touch-icon.png
 
 echo "Generating images..."
 mkdir -p ${imagesLocation}/icons/dark
-TmpDir=$(mktemp -d)
-${inkscapeExport "-C" "./data/favicon-source.svg" "$TmpDir/template.svg"}
+${inkscapeExport "-C -l" "./data/favicon-source.svg" "$TmpDir/template.svg"}
 ${generateIconsColorScheme "dark"}
-rm -rf $TmpDir
 
 mkdir -p ${imagesLocation}/badges
 cp ./data/valid-rss-rogers.png ${imagesLocation}/badges/valid-rss.png
 cp ./data/vcss.png ${imagesLocation}/badges/valid-css.png
 ${inkscapeExport "-C -h 31" "./data/ai-label_banner-no-ai-used.svg" "${imagesLocation}/badges/no-ai.png"}
+
+rm -rf $TmpDir/*
 
 echo "Cleaning styles..."
 rm -rf ./styles/*
@@ -54,12 +72,19 @@ echo "Generating styles..."
 cp ./data/style.css ./styles/style.css
 ${lib.getExe stripCSS} ./styles/catppuccin.css ./data/catppuccin.css ./styles/style.css
 
+rm -rf $TmpDir/*
+
 echo "Cleaning generated includes..."
 rm -rf ./_includes/generated/*
 
 echo "Generating includes..."
 mkdir -p ./_includes/generated/icons
 ${generateIconsLiquid "dark"}
+
+rm -rf $TmpDir/*
+
+echo "Cleaning the temporary directory..."
+rmdir $TmpDir
         '';
         stripCSS = writeScriptBin "strip-css" ''
 #!${lib.getExe nushell}
@@ -131,6 +156,9 @@ ${lib.getExe cobalt} serve --drafts
         '';
       in [
         cobalt
+
+        inkscape
+        imagemagick
 
         generate
         stripCSS
