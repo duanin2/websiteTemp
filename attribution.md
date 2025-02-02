@@ -12,7 +12,7 @@ data:
 - `/images/badges/valid-css.png` is [vcss](https://jigsaw.w3.org/css-validator/images/vcss) from [W3C CSS validator](https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https://duanin2.top&usermedium=all&vextwarning=&warning=1)
 - `/images/badges/valid-rss.png` is [valid-rss-rogers.png](https://validator.w3.org/feed/images/valid-rss-rogers.png) from [W3C RSS validator](https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fduanin2.top/feed.rss)
 - `/images/badges/no-ai.png` is rendered from the [image pack](https://ai-label.org/image-pack/image-pack.zip) from [AI Label](https://ai-label.org/) licensed under the [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
-- Everything else is written by [me](https://duanin2.top), unless stated otherwise
+- Everything else is made by [me](https://duanin2.top), unless stated otherwise
 
 ## Licenses
 Created by [Duanin2](https://duanin2.top) in {{ site.data.creationYear }} & last edited in {{ site.time | date: "%Y" }}.
