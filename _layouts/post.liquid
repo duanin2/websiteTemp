@@ -8,10 +8,14 @@
   </head>
   <body>
     {% include "menu.liquid" %}
-    <main>
-      <h1>{{ page.title }}</h1>
-      {% if page.is_draft == false %}<div class="published">Published on {{ page.published_date | date: "%d.%m.%Y at %H:%M in %Z" }}.</div>{% endif %}
-      {{ page.content }}
+    <main class="h-entry">
+      <h1 class="p-name">{{ page.title }}</h1>
+      <p class="published">Published by <a class="p-author h-card" href="{{ site.base_url }}">Duanin2</a>{% if page.is_draft == false %} on <time class="dt-published" datetime="{{ page.published_date | date: "%Y-%m-%d %H:%M:%S%z" }}">{{ page.published_date | date: "%d. %m. %Y at %H:%M in %Z" }}</time>{% endif %}. Post <a class="u-url u-uid" href="{{ site.base_url }}/{{ page.permalink }}">Permalink</a>.</p>
+      <div class="tags">
+      </div>
+      <div class="e-content">
+        {{ page.content }}
+      </div>
       <nav class="posts" aria-label="Posts">
         {%- if page.next %}<a href="/{{ page.next.permalink }}" aria-label="previous">&lt;</a>{% else %}<div>&lt;</div>{% endif %}
         {%- if page.previous %}<a href="/{{ page.previous.permalink }}" aria-label="next">&gt;</a>{% else %}<div>&gt;</div>{% endif %}
