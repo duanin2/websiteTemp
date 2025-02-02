@@ -26,10 +26,16 @@
             WebPLocation = getIconLocation colorScheme width "webp";
             PNGLocation = getIconLocation colorScheme width "png";
             JPEGLocation = getIconLocation colorScheme width "jpg";
+            AVIFLocation = getIconLocation colorScheme width "avif";
+            APNGLocation = getIconLocation colorScheme width "apng";
+            GIFLocation = getIconLocation colorScheme width "gif";
           in ''
 ${inkscapeExport "-C -w ${toString width} -h ${toString width}" SVGLocation PNGLocation}
 ${lib.getExe imagemagick} ${PNGLocation} ${WebPLocation}
 ${lib.getExe imagemagick} ${PNGLocation} ${JPEGLocation}
+${lib.getExe imagemagick} ${PNGLocation} ${AVIFLocation}
+${lib.getExe imagemagick} ${PNGLocation} ${APNGLocation}
+${lib.getExe imagemagick} ${PNGLocation} ${GIFLocation}
           '';
           generateIconsColorScheme = colorScheme: ''
 ${lib.getExe patternReplace} $TmpDir/template.svg ${imagesLocation}/icons/${colorScheme}/any.svg data/replacePatterns/icon-svg/${colorScheme}.csv
@@ -42,7 +48,7 @@ ${if (builtins.length appleTouchIconSizes) > 0 then "cp ${getIconLocation colorS
           iconSizes = builtins.sort (a: b: a > b) (appleTouchIconSizes ++ [ 192 64 48 32 16 ]);
           iconsLiquidTemplate = writeText "icons.liquid" ''
 <link rel="icon" type="image/svg+xml" sizes="any" href="/images/icons/{{ color-scheme }}/any.svg">
-${builtins.concatStringsSep "\n" (map (size: builtins.concatStringsSep "\n" (map (type: "<link rel=\"icon${if (builtins.elem size appleTouchIconSizes) then " apple-touch-icon" else ""}\" type=\"${type.type}\" sizes=\"${sizeToSizeString size}\" href=\"/${getIconLocation "{{ color-scheme }}" size type.ext}\">") [ {type = "image/webp"; ext = "webp";} {type = "image/png"; ext = "png";} {type = "image/jpg"; ext = "jpg";} ])) iconSizes)}
+${builtins.concatStringsSep "\n" (map (size: builtins.concatStringsSep "\n" (map (type: "<link rel=\"icon${if (builtins.elem size appleTouchIconSizes) then " apple-touch-icon" else ""}\" type=\"${type.type}\" sizes=\"${sizeToSizeString size}\" href=\"/${getIconLocation "{{ color-scheme }}" size type.ext}\">") [ {type = "image/avif"; ext = "avif";} {type = "image/webp"; ext = "webp";} {type = "image/apng"; ext = "apng";} {type = "image/png"; ext = "png";} {type = "image/jpg"; ext = "jpg";} {type = "image/gif"; ext = "gif";} ])) iconSizes)}
 <link rel="icon apple-touch-icon" type="image/png" sizes="${sizeToSizeString (getLargestElement appleTouchIconSizes)}" href="/apple-touch-icon.png">
 ${builtins.concatStringsSep "\n" (map (type: "<link rel=\"icon\" type=\"${type}\" sizes=\"${builtins.concatStringsSep " " (map sizeToSizeString iconSizes)}\" href=\"/favicon.ico\">") [ "image/vnd.microsoft.icon" "image/x-icon" ])}
           '';
@@ -51,34 +57,33 @@ echo "Creating the temporary directory..."
 TmpDir=$(mktemp -d)
 
 echo "Cleaning images..."
-rm -rf ${imagesLocation}/* ./favicon.ico ./apple-touch-icon.png
+rm -rf ${imagesLocation}/* favicon.ico apple-touch-icon.png
+mkdir -p ${imagesLocation}/{icons/dark,badges}
+
+echo "Cleaning styles..."
+rm -rf styles/*
+
+echo "Cleaning generated includes..."
+rm -rf _includes/generated/*
+mkdir -p _includes/generated/icons
 
 echo "Generating images..."
-mkdir -p ${imagesLocation}/icons/dark
 ${inkscapeExport "-C -l" "./data/favicon-source.svg" "$TmpDir/template.svg"}
 ${generateIconsColorScheme "dark"}
 
-mkdir -p ${imagesLocation}/badges
-cp ./data/valid-rss-rogers.png ${imagesLocation}/badges/valid-rss.png
-cp ./data/vcss.png ${imagesLocation}/badges/valid-css.png
-${inkscapeExport "-C -h 31" "./data/ai-label_banner-no-ai-used.svg" "${imagesLocation}/badges/no-ai.png"}
+cp data/valid-rss-rogers.png ${imagesLocation}/badges/valid-rss.png
+cp data/vcss.png ${imagesLocation}/badges/valid-css.png
+${inkscapeExport "-C -h 31" "data/ai-label_banner-no-ai-used.svg" "${imagesLocation}/badges/no-ai.png"}
 
 rm -rf $TmpDir/*
-
-echo "Cleaning styles..."
-rm -rf ./styles/*
 
 echo "Generating styles..."
-cp ./data/style.css ./styles/style.css
-${lib.getExe stripCSS} ./styles/catppuccin.css ./data/catppuccin.css ./styles/style.css
+cp data/style.css styles/style.css
+${lib.getExe stripCSS} styles/catppuccin.css data/catppuccin.css styles/style.css
 
 rm -rf $TmpDir/*
 
-echo "Cleaning generated includes..."
-rm -rf ./_includes/generated/*
-
 echo "Generating includes..."
-mkdir -p ./_includes/generated/icons
 ${generateIconsLiquid "dark"}
 
 rm -rf $TmpDir/*
@@ -157,6 +162,7 @@ ${lib.getExe cobalt} serve --drafts
       in [
         cobalt
 
+				ffmpeg
         inkscape
         imagemagick
 
