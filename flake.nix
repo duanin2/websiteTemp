@@ -98,6 +98,13 @@ ${generateImage "data/images/buttons/valid-rss-rogers.png" "${imagesLocation}/bu
 ${generateImage "data/images/buttons/vcss.png" "${imagesLocation}/buttons" "valid-css"}
 ${inkscapeExport "-C -h 31" "data/images/buttons/ai-label_banner-no-ai-used.svg" "${imagesLocation}/buttons/no-ai.png"}
 ${generateImage "${imagesLocation}/buttons/no-ai.png" "${imagesLocation}/buttons" "no-ai"}
+${generateAnimatedImage "data/images/buttons/anything_but_chrome.gif" "${imagesLocation}/buttons" "anything-but-chrome"}
+${generateImage "data/images/buttons/firefox_now.png" "${imagesLocation}/buttons" "firefox-now"}
+${generateAnimatedImage "data/images/buttons/blinkiesCafe-badge.gif" "${imagesLocation}/buttons" "blinkiesCafe"}
+
+${generateAnimatedImage "data/images/blinkies/blinkiesCafe-qX.gif" "${imagesLocation}/blinkies" "i-love-miku"}
+${generateAnimatedImage "data/images/blinkies/blinkiesCafe-RX.gif" "${imagesLocation}/blinkies" "adhd"}
+${generateAnimatedImage "data/images/blinkies/blinkiesCafe-l4.gif" "${imagesLocation}/blinkies" "autism"}
 
 rm -rf $TmpDir/*
 
