@@ -76,10 +76,9 @@ footer {
 
 	text-align: center;
 }
-footer .badges img {
-	border: 0;
-	height: 31px;
-}
+footer .buttons img { height: 31px; }
+footer .blinkies img { height: 20px; }
+footer .buttons img, footer .blinkies img { border: 0; }
 
 .pages, .posts {
 	width: 100px;

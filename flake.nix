@@ -18,39 +18,62 @@
 
           sizeToSizeString = size: "${toString size}x${toString size}";
           getLargestElement = array: (builtins.elemAt (builtins.sort (a: b: a > b) array) 0);
+          getSmallestElement = array: (builtins.elemAt (builtins.sort (a: b: a < b) array) 0);
+
+          generateImage = source: targetDirectory: name: let
+            getLocation = type: "${targetDirectory}/${name}.${type}";
+
+            WebPLocation = getLocation "webp";
+            PNGLocation = getLocation "png";
+            JPEGLocation = getLocation "jpg";
+            AVIFLocation = getLocation "avif";
+            APNGLocation = getLocation "apng";
+            GIFLocation = getLocation "gif";
+          in ''
+${lib.getExe imagemagick} ${source} ${WebPLocation}
+${lib.getExe imagemagick} ${source} ${PNGLocation}
+${lib.getExe imagemagick} ${source} ${JPEGLocation}
+${lib.getExe imagemagick} ${source} ${AVIFLocation}
+${lib.getExe imagemagick} ${source} ${APNGLocation}
+${lib.getExe imagemagick} ${source} ${GIFLocation}
+          '';
+          generateAnimatedImage = source: targetDirectory: name: let
+            getLocation = type: "${targetDirectory}/${name}.${type}";
+
+            WebPLocation = getLocation "webp";
+            AVIFLocation = getLocation "avif";
+            APNGLocation = getLocation "apng";
+            GIFLocation = getLocation "gif";
+          in ''
+${lib.getExe imagemagick} ${source} ${WebPLocation}
+${lib.getExe imagemagick} ${source} ${AVIFLocation}
+${lib.getExe imagemagick} ${source} ${APNGLocation}
+${lib.getExe imagemagick} ${source} ${GIFLocation}
+          '';
 
           getIconLocation = colorScheme: width: type: "${imagesLocation}/icons/${colorScheme}/${toString width}.${type}";
 
           generateIcon = colorScheme: width: let
             SVGLocation = "${imagesLocation}/icons/${colorScheme}/any.svg";
-            WebPLocation = getIconLocation colorScheme width "webp";
             PNGLocation = getIconLocation colorScheme width "png";
-            JPEGLocation = getIconLocation colorScheme width "jpg";
-            AVIFLocation = getIconLocation colorScheme width "avif";
-            APNGLocation = getIconLocation colorScheme width "apng";
-            GIFLocation = getIconLocation colorScheme width "gif";
           in ''
 ${inkscapeExport "-C -w ${toString width} -h ${toString width}" SVGLocation PNGLocation}
-${lib.getExe imagemagick} ${PNGLocation} ${WebPLocation}
-${lib.getExe imagemagick} ${PNGLocation} ${JPEGLocation}
-${lib.getExe imagemagick} ${PNGLocation} ${AVIFLocation}
-${lib.getExe imagemagick} ${PNGLocation} ${APNGLocation}
-${lib.getExe imagemagick} ${PNGLocation} ${GIFLocation}
+${generateImage PNGLocation "${imagesLocation}/icons/${colorScheme}" (toString width)}
           '';
           generateIconsColorScheme = colorScheme: ''
 ${lib.getExe patternReplace} $TmpDir/template.svg ${imagesLocation}/icons/${colorScheme}/any.svg data/replacePatterns/icon-svg/${colorScheme}.csv
 ${builtins.concatStringsSep "\n" (map (generateIcon "${colorScheme}") iconSizes)}
-${lib.getExe imagemagick} ${builtins.concatStringsSep " " (map (width: getIconLocation colorScheme width "png") iconSizes)} ./favicon.ico
-${if (builtins.length appleTouchIconSizes) > 0 then "cp ${getIconLocation colorScheme (getLargestElement appleTouchIconSizes) "png"} ./apple-touch-icon.png" else ""}
+${lib.getExe imagemagick} ${getIconLocation colorScheme (getSmallestElement iconSizes) "png"} favicon.ico
+${if (builtins.length appleTouchIconSizes) > 0 then "cp ${getIconLocation colorScheme (getLargestElement appleTouchIconSizes) "png"} apple-touch-icon.png" else ""}
           '';
-          generateIconsLiquid = colorScheme: "${lib.getExe patternReplace} ${iconsLiquidTemplate} _includes/generated/icons/${colorScheme}.liquid ./data/replacePatterns/icon-liquid/${colorScheme}.csv";
+          generateIconsLiquid = colorScheme: "${lib.getExe patternReplace} ${iconsLiquidTemplate} _includes/generated/icons/${colorScheme}.liquid data/replacePatterns/icon-liquid/${colorScheme}.csv";
           appleTouchIconSizes = builtins.sort (a: b: a > b) [ 180 167 152 120 ];
           iconSizes = builtins.sort (a: b: a > b) (appleTouchIconSizes ++ [ 192 64 48 32 16 ]);
           iconsLiquidTemplate = writeText "icons.liquid" ''
 <link rel="icon" type="image/svg+xml" sizes="any" href="/images/icons/{{ color-scheme }}/any.svg">
 ${builtins.concatStringsSep "\n" (map (size: builtins.concatStringsSep "\n" (map (type: "<link rel=\"icon${if (builtins.elem size appleTouchIconSizes) then " apple-touch-icon" else ""}\" type=\"${type.type}\" sizes=\"${sizeToSizeString size}\" href=\"/${getIconLocation "{{ color-scheme }}" size type.ext}\">") [ {type = "image/avif"; ext = "avif";} {type = "image/webp"; ext = "webp";} {type = "image/apng"; ext = "apng";} {type = "image/png"; ext = "png";} {type = "image/jpg"; ext = "jpg";} {type = "image/gif"; ext = "gif";} ])) iconSizes)}
 <link rel="icon apple-touch-icon" type="image/png" sizes="${sizeToSizeString (getLargestElement appleTouchIconSizes)}" href="/apple-touch-icon.png">
-${builtins.concatStringsSep "\n" (map (type: "<link rel=\"icon\" type=\"${type}\" sizes=\"${builtins.concatStringsSep " " (map sizeToSizeString iconSizes)}\" href=\"/favicon.ico\">") [ "image/vnd.microsoft.icon" "image/x-icon" ])}
+${builtins.concatStringsSep "\n" (map (type: "<link rel=\"icon\" type=\"${type}\" sizes=\"${sizeToSizeString (getSmallestElement iconSizes)}\" href=\"/favicon.ico\">") [ "image/vnd.microsoft.icon" "image/x-icon" ])}
           '';
         in writeShellScriptBin "generate" ''
 echo "Creating the temporary directory..."
@@ -58,7 +81,7 @@ TmpDir=$(mktemp -d)
 
 echo "Cleaning images..."
 rm -rf ${imagesLocation}/* favicon.ico apple-touch-icon.png
-mkdir -p ${imagesLocation}/{icons/dark,badges}
+mkdir -p ${imagesLocation}/{icons/dark,buttons,blinkies}
 
 echo "Cleaning styles..."
 rm -rf styles/*
@@ -68,18 +91,19 @@ rm -rf _includes/generated/*
 mkdir -p _includes/generated/icons
 
 echo "Generating images..."
-${inkscapeExport "-C -l" "./data/favicon-source.svg" "$TmpDir/template.svg"}
+${inkscapeExport "-C -l" "data/images/icons/favicon-source.svg" "$TmpDir/template.svg"}
 ${generateIconsColorScheme "dark"}
 
-cp data/valid-rss-rogers.png ${imagesLocation}/badges/valid-rss.png
-cp data/vcss.png ${imagesLocation}/badges/valid-css.png
-${inkscapeExport "-C -h 31" "data/ai-label_banner-no-ai-used.svg" "${imagesLocation}/badges/no-ai.png"}
+${generateImage "data/images/buttons/valid-rss-rogers.png" "${imagesLocation}/buttons" "valid-rss"}
+${generateImage "data/images/buttons/vcss.png" "${imagesLocation}/buttons" "valid-css"}
+${inkscapeExport "-C -h 31" "data/images/buttons/ai-label_banner-no-ai-used.svg" "${imagesLocation}/buttons/no-ai.png"}
+${generateImage "${imagesLocation}/buttons/no-ai.png" "${imagesLocation}/buttons" "no-ai"}
 
 rm -rf $TmpDir/*
 
 echo "Generating styles..."
-cp data/style.css styles/style.css
-${lib.getExe stripCSS} styles/catppuccin.css data/catppuccin.css styles/style.css
+cp data/styles/style.css styles/style.css
+${lib.getExe stripCSS} styles/catppuccin.css data/styles/catppuccin.css styles/style.css
 
 rm -rf $TmpDir/*
 

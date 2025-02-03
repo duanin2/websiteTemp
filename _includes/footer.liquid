@@ -1,9 +1,9 @@
 <footer>
 	See the <a href="/attribution.html">Attribution & licensing</a> page for license information
 	& see the <a href="{{ site.base_url }}/links.html">Webrings & other links</a> page for different webrings and clubs I'm a member of.
-	<div class="badges">
-    <a href="https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri={{ site.base_url }}/{{ page.permalink }}&usermedium=all&vextwarning=&warning=1"><img src="/images/badges/valid-css.png" alt="This page has valid CSS!"></a>
-		<a href="http://validator.w3.org/feed/check.cgi?url={{ site.base_url | url_encode }}/feed.json"><img src="/images/badges/valid-rss.png" alt="This page has valid RSS!" title="Validate my RSS feed"></a>
-		<a href="https://ai-label.org/"><img src="/images/badges/no-ai.png" alt="This website was made without the use of AI."></a>
+	<div class="buttons">
+    <a href="https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri={{ site.base_url }}/{{ page.permalink }}&usermedium=all&vextwarning=&warning=1">{% render "image.liquid", imgLocation: "/images/buttons/valid-css", imgAlt: "This page has valid CSS!" %}</a>
+		<a href="http://validator.w3.org/feed/check.cgi?url={{ site.base_url | url_encode }}/feed.json">{% render "image.liquid", imgLocation: "/images/buttons/valid-rss", imgAlt: "This page has valid RSS!" %}</a>
+		<a href="https://ai-label.org/">{% render "image.liquid", imgLocation: "/images/buttons/no-ai", imgAlt: "This website was made without the use of AI." %}</a>
 	</div>
 </footer>
