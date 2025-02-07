@@ -30,11 +30,11 @@
             APNGLocation = getLocation "apng";
             GIFLocation = getLocation "gif";
           in ''
-${lib.getExe imagemagick} ${source} ${WebPLocation}
-${lib.getExe imagemagick} ${source} ${PNGLocation}
-${lib.getExe imagemagick} ${source} ${JPEGLocation}
+${lib.getExe imagemagick} -quality 0 ${source} ${WebPLocation}
+${lib.getExe imagemagick} -define PNG:compression-level=9 ${source} ${PNGLocation}
+${lib.getExe imagemagick} -quality 50 ${source} ${JPEGLocation}
 ${lib.getExe imagemagick} ${source} ${AVIFLocation}
-${lib.getExe imagemagick} ${source} ${APNGLocation}
+${lib.getExe imagemagick} -define PNG:compression-level=9 ${source} ${APNGLocation}
 ${lib.getExe imagemagick} ${source} ${GIFLocation}
           '';
           generateAnimatedImage = source: targetDirectory: name: let
@@ -45,9 +45,9 @@ ${lib.getExe imagemagick} ${source} ${GIFLocation}
             APNGLocation = getLocation "apng";
             GIFLocation = getLocation "gif";
           in ''
-${lib.getExe imagemagick} ${source} ${WebPLocation}
+${lib.getExe imagemagick} -quality 0 ${source} ${WebPLocation}
 ${lib.getExe imagemagick} ${source} ${AVIFLocation}
-${lib.getExe imagemagick} ${source} ${APNGLocation}
+${lib.getExe imagemagick} -define PNG:compression-level=9 ${source} ${APNGLocation}
 ${lib.getExe imagemagick} ${source} ${GIFLocation}
           '';
 
