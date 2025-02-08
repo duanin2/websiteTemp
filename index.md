@@ -87,7 +87,7 @@ I use VSCodium[^26] as my code editor.
 
 [^23]: [Plasma Manager](https://github.com/nix-community/plasma-manager/)
 
-[^24]: [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/)
+[^24]: [Mozilla Firefox](https://www.mozilla.org/firefox/)
 
 [^25]: [Arkenfox user.js](https://github.com/arkenfox/user.js)
 
