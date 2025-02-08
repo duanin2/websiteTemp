@@ -17,8 +17,12 @@
           imagesLocation = "images";
 
           sizeToSizeString = size: "${toString size}x${toString size}";
-          getLargestElement = array: (builtins.elemAt (builtins.sort (a: b: a > b) array) 0);
-          getSmallestElement = array: (builtins.elemAt (builtins.sort (a: b: a < b) array) 0);
+
+          sortAscending = array: (builtins.sort (a: b: a < b) array);
+          sortDescending = array: (builtins.sort (a: b: a > b) array);
+          getFirstElement = array: builtins.elemAt array 0;
+          getLargestElement = array: getFirstElement (sortDescending array);
+          getSmallestElement = array: getFirstElement (sortAscending array);
 
           generateImage = source: targetDirectory: name: let
             getLocation = type: "${targetDirectory}/${name}.${type}";
