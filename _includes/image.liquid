@@ -4,7 +4,7 @@
 	{% if file.first == name %}
 		{% for image in file.last %}
 			{% if forloop.last %}
-	<img src="/{{ image.name }}" alt="{{ imgAlt }}">
+	<img src="/{{ image.name }}" alt="{{ imgAlt }}" loading="lazy">
 			{% else %}
 	<source srcset="/{{ image.name }}" type="{{ image.type }}">
 			{% endif %}
