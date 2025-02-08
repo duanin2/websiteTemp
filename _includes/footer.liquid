@@ -14,4 +14,11 @@
 		{% render "animatedImage.liquid", imgLocation: "/images/blinkies/adhd", imgAlt: "I have ADHD." %}
 		{% render "animatedImage.liquid", imgLocation: "/images/blinkies/autism", imgAlt: "I have autism." %}
 	</div>
+	<div class="badges">
+		{% render "image.liquid", imgLocation: "/images/badges/europe", imgAlt: "I live in the EU." %}
+		<a href="https://www.mozilla.org/firefox/">{% render "image.liquid", imgLocation: "/images/badges/firefox", imgAlt: "I use Mozilla Firefox." %}</a>
+		<a href="https://kernel.org/">{% render "image.liquid", imgLocation: "/images/badges/linux", imgAlt: "I use Linux." %}</a>
+		<a href="{{ site.base_url }}/feed.rss">{% render "image.liquid", imgLocation: "/images/badges/rss2", imgAlt: "My RSS feed." %}</a>
+		<a href="https://www.thunderbird.net/">{% render "image.liquid", imgLocation: "/images/badges/thunderbird", imgAlt: "I use Mozilla Thunderbird." %}</a>
+	</div>
 </footer>

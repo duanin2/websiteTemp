@@ -81,7 +81,7 @@ TmpDir=$(mktemp -d)
 
 echo "Cleaning images..."
 rm -rf ${imagesLocation}/* favicon.ico apple-touch-icon.png
-mkdir -p ${imagesLocation}/{icons/dark,buttons,blinkies}
+mkdir -p ${imagesLocation}/{icons/dark,buttons,blinkies,badges}
 
 echo "Cleaning styles..."
 rm -rf styles/*
@@ -105,6 +105,12 @@ ${generateAnimatedImage "data/images/buttons/blinkiesCafe-badge.gif" "${imagesLo
 ${generateAnimatedImage "data/images/blinkies/blinkiesCafe-qX.gif" "${imagesLocation}/blinkies" "i-love-miku"}
 ${generateAnimatedImage "data/images/blinkies/blinkiesCafe-RX.gif" "${imagesLocation}/blinkies" "adhd"}
 ${generateAnimatedImage "data/images/blinkies/blinkiesCafe-l4.gif" "${imagesLocation}/blinkies" "autism"}
+
+${generateImage "data/images/badges/europe_copy1.png" "${imagesLocation}/badges" "europe"}
+${generateImage "data/images/badges/firefox_copy4.gif" "${imagesLocation}/badges" "firefox"}
+${generateImage "data/images/badges/linux2.gif" "${imagesLocation}/badges" "linux"}
+${generateImage "data/images/badges/rss2.gif" "${imagesLocation}/badges" "rss2"}
+${generateImage "data/images/badges/thunderbird_copy1.gif" "${imagesLocation}/badges" "thunderbird"}
 
 rm -rf $TmpDir/*
 

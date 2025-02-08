@@ -23,6 +23,7 @@ data:
       - `/images/buttons/firefox-now.*`
       - `/images/buttons/anything-but-chrome.*`
     - `/images/buttons/blinkiesCafe.*` is rendered from [The blinkies.cafe badge](https://blinkies.cafe/b/display/blinkiesCafe-badge.gif)
+  - `/images/badges/*` is rendered from images on the [Web Badges World](https://web.badges.world/)
 - Everything else is made by [me](https://duanin2.top), unless stated otherwise
 
 ## Licenses

@@ -78,7 +78,8 @@ footer {
 }
 footer .buttons img { height: 31px; }
 footer .blinkies img { height: 20px; }
-footer .buttons img, footer .blinkies img { border: 0; }
+footer .badges img { height: 15px; }
+footer .buttons img, footer .blinkies img, footer .badges img { border: 0; }
 
 .pages, .posts {
 	width: 100px;
