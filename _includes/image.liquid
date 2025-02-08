@@ -1,8 +1,14 @@
+{% capture name %}{{ imgLocation | replace: "/", "-" }}{% endcapture %}
 <picture>
-	<source srcset="{{ imgLocation }}.avif" type="image/avif">
-	<source srcset="{{ imgLocation }}.webp" type="image/webp">
-	<source srcset="{{ imgLocation }}.apng" type="image/apng">
-	<source srcset="{{ imgLocation }}.png" type="image/png">
-	<source srcset="{{ imgLocation }}.jpg" type="image/jpeg">
-	<img src="{{ imgLocation }}.gif" alt="{{ imgAlt }}">
+{% for file in site.data.images %}
+	{% if file.first == name %}
+		{% for image in file.last %}
+			{% if forloop.last %}
+	<img src="/{{ image.name }}" alt="{{ imgAlt }}">
+			{% else %}
+	<source srcset="/{{ image.name }}" type="{{ image.type }}">
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+{% endfor %}
 </picture>

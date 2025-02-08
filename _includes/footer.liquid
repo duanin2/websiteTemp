@@ -2,23 +2,23 @@
 	See the <a href="/attribution.html">Attribution & licensing</a> page for license information
 	& see the <a href="{{ site.base_url }}/links.html">Webrings & other links</a> page for different webrings and clubs I'm a member of.
 	<div class="buttons">
-    <a href="https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri={{ site.base_url }}/{{ page.permalink }}&usermedium=all&vextwarning=&warning=1">{% render "image.liquid", imgLocation: "/images/buttons/valid-css", imgAlt: "This page has valid CSS!" %}</a>
-		<a href="https://validator.w3.org/feed/check.cgi?url={{ site.base_url | url_encode }}/feed.rss">{% render "image.liquid", imgLocation: "/images/buttons/valid-rss", imgAlt: "This page has valid RSS!" %}</a>
-		<a href="https://ai-label.org/">{% render "image.liquid", imgLocation: "/images/buttons/no-ai", imgAlt: "This website was made without the use of AI." %}</a>
-		{% render "animatedImage.liquid", imgLocation: "/images/buttons/anything-but-chrome", imgAlt: "Anything but Google Chrome." %}
-		<a href="https://www.mozilla.org/firefox/">{% render "image.liquid", imgLocation: "/images/buttons/firefox-now", imgAlt: "Mozilla Firefox NOW." %}</a>
-		<a href="https://blinkies.cafe/">{% render "animatedImage.liquid", imgLocation: "/images/buttons/blinkiesCafe", imgAlt: "blinkies.cafe" %}</a>
+    <a href="https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri={{ site.base_url }}/{{ page.permalink }}&usermedium=all&vextwarning=&warning=1">{% render "image", imgLocation: "images/buttons/valid-css", imgAlt: "This page has valid CSS!", site: site %}</a>
+		<a href="https://validator.w3.org/feed/check.cgi?url={{ site.base_url | url_encode }}/feed.rss">{% render "image", imgLocation: "images/buttons/valid-rss", imgAlt: "This page has valid RSS!", site: site %}</a>
+		<a href="https://ai-label.org/">{% render "image", imgLocation: "images/buttons/no-ai", imgAlt: "This website was made without the use of AI.", site: site %}</a>
+		{% render "image", imgLocation: "/images/buttons/anything-but-chrome", imgAlt: "Anything but Google Chrome.", site: site %}
+		<a href="https://www.mozilla.org/firefox/">{% render "image", imgLocation: "images/buttons/firefox-now", imgAlt: "Mozilla Firefox NOW.", site: site %}</a>
+		<a href="https://blinkies.cafe/">{% render "image", imgLocation: "images/buttons/blinkiesCafe", imgAlt: "blinkies.cafe", site: site %}</a>
 	</div>
 	<div class="blinkies">
-		{% render "animatedImage.liquid", imgLocation: "/images/blinkies/i-love-miku", imgAlt: "I love Hatsune Miku." %}
-		{% render "animatedImage.liquid", imgLocation: "/images/blinkies/adhd", imgAlt: "I have ADHD." %}
-		{% render "animatedImage.liquid", imgLocation: "/images/blinkies/autism", imgAlt: "I have autism." %}
+		{% render "image", imgLocation: "images/blinkies/i-love-miku", imgAlt: "I love Hatsune Miku.", site: site %}
+		{% render "image", imgLocation: "images/blinkies/adhd", imgAlt: "I have ADHD.", site: site %}
+		{% render "image", imgLocation: "images/blinkies/autism", imgAlt: "I have autism.", site: site %}
 	</div>
 	<div class="badges">
-		{% render "image.liquid", imgLocation: "/images/badges/europe", imgAlt: "I live in the EU." %}
-		<a href="https://www.mozilla.org/firefox/">{% render "image.liquid", imgLocation: "/images/badges/firefox", imgAlt: "I use Mozilla Firefox." %}</a>
-		<a href="https://kernel.org/">{% render "image.liquid", imgLocation: "/images/badges/linux", imgAlt: "I use Linux." %}</a>
-		<a href="{{ site.base_url }}/feed.rss">{% render "image.liquid", imgLocation: "/images/badges/rss2", imgAlt: "My RSS feed." %}</a>
-		<a href="https://www.thunderbird.net/">{% render "image.liquid", imgLocation: "/images/badges/thunderbird", imgAlt: "I use Mozilla Thunderbird." %}</a>
+		{% render "image", imgLocation: "images/badges/europe", imgAlt: "I live in the EU.", site: site %}
+		<a href="https://www.mozilla.org/firefox/">{% render "image", imgLocation: "images/badges/firefox", imgAlt: "I use Mozilla Firefox.", site: site %}</a>
+		<a href="https://kernel.org/">{% render "image", imgLocation: "images/badges/linux", imgAlt: "I use Linux.", site: site %}</a>
+		<a href="{{ site.base_url }}/feed.rss">{% render "image", imgLocation: "images/badges/rss2", imgAlt: "My RSS feed.", site: site %}</a>
+		<a href="https://www.thunderbird.net/">{% render "image", imgLocation: "images/badges/thunderbird", imgAlt: "I use Mozilla Thunderbird.", site: site %}</a>
 	</div>
 </footer>

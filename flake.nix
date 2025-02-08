@@ -13,6 +13,24 @@
       packages = with pkgs; let
         inkscapeExport = extraParams: inputFile: outputFile: "${lib.getExe inkscape} -o \"${outputFile}\" ${extraParams} \"${inputFile}\"";
 
+        fileExtToMIME = {
+          webp = "image/webp";
+          png = "image/png";
+          jpg = "image/jpeg";
+          avif = "image/avif";
+          apng = "image/apng";
+          gif = "image/gif";
+        };
+        fileExtToMIMEBash = writeShellScriptBin "file-ext-to-mime" ''
+case "$1" in
+  ${builtins.concatStringsSep "\n  " (lib.mapAttrsToList (name: value: "*.${name})\n    echo \"${value}\";\n    exit 0\n    ;;") fileExtToMIME)}
+  *)
+    echo "text/plain";
+    exit 255;
+    ;;
+esac
+        '';
+
         generate = let
           imagesLocation = "images";
 
@@ -24,36 +42,40 @@
           getLargestElement = array: getFirstElement (sortDescending array);
           getSmallestElement = array: getFirstElement (sortAscending array);
 
-          generateImage = source: targetDirectory: name: let
-            getLocation = type: "${targetDirectory}/${name}.${type}";
+          generateImage = source: targetDirectory: fileName: formats: let
+            formatsLocations = builtins.mapAttrs (type: _: "${targetDirectory}/${fileName}.${type}") formats;
 
-            WebPLocation = getLocation "webp";
-            PNGLocation = getLocation "png";
-            JPEGLocation = getLocation "jpg";
-            AVIFLocation = getLocation "avif";
-            APNGLocation = getLocation "apng";
-            GIFLocation = getLocation "gif";
+            sortedFiles = "_data/images";
+            sortedFile = "${sortedFiles}/${builtins.replaceStrings [ "/" ] [ "-" ] targetDirectory}-${fileName}.yml";
           in ''
-${lib.getExe imagemagick} -quality 0 ${source} ${WebPLocation}
-${lib.getExe imagemagick} -define PNG:compression-level=9 ${source} ${PNGLocation}
-${lib.getExe imagemagick} -quality 50 ${source} ${JPEGLocation}
-${lib.getExe imagemagick} ${source} ${AVIFLocation}
-${lib.getExe imagemagick} -define PNG:compression-level=9 ${source} ${APNGLocation}
-${lib.getExe imagemagick} ${source} ${GIFLocation}
+${builtins.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "${lib.getExe imagemagick} ${toString value} ${source} ${formatsLocations.${name}}") formats)}
+mkdir -p ${sortedFiles}
+rm -f ${sortedFile}
+for file in $(ls -Sr ${builtins.concatStringsSep " " (lib.mapAttrsToList (_: value: "\"${value}\"") formatsLocations)}); do
+  echo -e "- name: $file\n  type: $(${lib.getExe fileExtToMIMEBash} $file)" >> ${sortedFile}
+done
           '';
-          generateAnimatedImage = source: targetDirectory: name: let
-            getLocation = type: "${targetDirectory}/${name}.${type}";
-
-            WebPLocation = getLocation "webp";
-            AVIFLocation = getLocation "avif";
-            APNGLocation = getLocation "apng";
-            GIFLocation = getLocation "gif";
-          in ''
-${lib.getExe imagemagick} -quality 0 ${source} ${WebPLocation}
-${lib.getExe imagemagick} ${source} ${AVIFLocation}
-${lib.getExe imagemagick} -define PNG:compression-level=9 ${source} ${APNGLocation}
-${lib.getExe imagemagick} ${source} ${GIFLocation}
-          '';
+          generateStaticImage = source: targetDirectory: name: generateImage source targetDirectory name {
+            webp = "-quality 0";
+            png = "-define PNG:compression-level=9";
+            jpg = "-quality 50";
+            avif = "";
+            apng = "-define PNG:compression-level=9";
+            gif = "";
+          };
+          generateTransparentImage = source: targetDirectory: name: generateImage source targetDirectory name {
+            webp = "-quality 0";
+            png = "-define PNG:compression-level=9";
+            avif = "";
+            apng = "-define PNG:compression-level=9";
+            gif = "";
+          };
+          generateAnimatedImage = source: targetDirectory: name: generateImage source targetDirectory name {
+            webp = "-quality 0";
+            # avif = "";
+            apng = "-define PNG:compression-level=9";
+            gif = "";
+          };
 
           getIconLocation = colorScheme: width: type: "${imagesLocation}/icons/${colorScheme}/${toString width}.${type}";
 
@@ -62,7 +84,7 @@ ${lib.getExe imagemagick} ${source} ${GIFLocation}
             PNGLocation = getIconLocation colorScheme width "png";
           in ''
 ${inkscapeExport "-C -w ${toString width} -h ${toString width}" SVGLocation PNGLocation}
-${generateImage PNGLocation "${imagesLocation}/icons/${colorScheme}" (toString width)}
+${generateStaticImage PNGLocation "${imagesLocation}/icons/${colorScheme}" (toString width)}
           '';
           generateIconsColorScheme = colorScheme: ''
 ${lib.getExe patternReplace} $TmpDir/template.svg ${imagesLocation}/icons/${colorScheme}/any.svg data/replacePatterns/icon-svg/${colorScheme}.csv
@@ -75,7 +97,7 @@ ${if (builtins.length appleTouchIconSizes) > 0 then "cp ${getIconLocation colorS
           iconSizes = builtins.sort (a: b: a > b) (appleTouchIconSizes ++ [ 192 64 48 32 16 ]);
           iconsLiquidTemplate = writeText "icons.liquid" ''
 <link rel="icon" type="image/svg+xml" sizes="any" href="/images/icons/{{ color-scheme }}/any.svg">
-${builtins.concatStringsSep "\n" (map (size: builtins.concatStringsSep "\n" (map (type: "<link rel=\"icon${if (builtins.elem size appleTouchIconSizes) then " apple-touch-icon" else ""}\" type=\"${type.type}\" sizes=\"${sizeToSizeString size}\" href=\"/${getIconLocation "{{ color-scheme }}" size type.ext}\">") [ {type = "image/avif"; ext = "avif";} {type = "image/webp"; ext = "webp";} {type = "image/apng"; ext = "apng";} {type = "image/png"; ext = "png";} {type = "image/jpg"; ext = "jpg";} {type = "image/gif"; ext = "gif";} ])) iconSizes)}
+${builtins.concatStringsSep "\n" (map (size: "{% for file in site.data.images.images-icons-dark-${toString size} %}<link rel=\"icon${if (builtins.elem size appleTouchIconSizes) then " apple-touch-icon" else ""}\" sizes=\"${sizeToSizeString size}\" href=\"{{ file.name }}\" type=\"{{ file.type }}\">{% endfor %}") iconSizes)}
 <link rel="icon apple-touch-icon" type="image/png" sizes="${sizeToSizeString (getLargestElement appleTouchIconSizes)}" href="/apple-touch-icon.png">
 ${builtins.concatStringsSep "\n" (map (type: "<link rel=\"icon\" type=\"${type}\" sizes=\"${sizeToSizeString (getSmallestElement iconSizes)}\" href=\"/favicon.ico\">") [ "image/vnd.microsoft.icon" "image/x-icon" ])}
           '';
@@ -98,23 +120,23 @@ echo "Generating images..."
 ${inkscapeExport "-C -l" "data/images/icons/favicon-source.svg" "$TmpDir/template.svg"}
 ${generateIconsColorScheme "dark"}
 
-${generateImage "data/images/buttons/valid-rss-rogers.png" "${imagesLocation}/buttons" "valid-rss"}
-${generateImage "data/images/buttons/vcss.png" "${imagesLocation}/buttons" "valid-css"}
+${generateTransparentImage "data/images/buttons/valid-rss-rogers.png" "${imagesLocation}/buttons" "valid-rss"}
+${generateTransparentImage "data/images/buttons/vcss.png" "${imagesLocation}/buttons" "valid-css"}
 ${inkscapeExport "-C -h 31" "data/images/buttons/ai-label_banner-no-ai-used.svg" "${imagesLocation}/buttons/no-ai.png"}
-${generateImage "${imagesLocation}/buttons/no-ai.png" "${imagesLocation}/buttons" "no-ai"}
+${generateStaticImage "${imagesLocation}/buttons/no-ai.png" "${imagesLocation}/buttons" "no-ai"}
 ${generateAnimatedImage "data/images/buttons/anything_but_chrome.gif" "${imagesLocation}/buttons" "anything-but-chrome"}
-${generateImage "data/images/buttons/firefox_now.png" "${imagesLocation}/buttons" "firefox-now"}
+${generateStaticImage "data/images/buttons/firefox_now.png" "${imagesLocation}/buttons" "firefox-now"}
 ${generateAnimatedImage "data/images/buttons/blinkiesCafe-badge.gif" "${imagesLocation}/buttons" "blinkiesCafe"}
 
 ${generateAnimatedImage "data/images/blinkies/blinkiesCafe-qX.gif" "${imagesLocation}/blinkies" "i-love-miku"}
 ${generateAnimatedImage "data/images/blinkies/blinkiesCafe-RX.gif" "${imagesLocation}/blinkies" "adhd"}
 ${generateAnimatedImage "data/images/blinkies/blinkiesCafe-l4.gif" "${imagesLocation}/blinkies" "autism"}
 
-${generateImage "data/images/badges/europe_copy1.png" "${imagesLocation}/badges" "europe"}
-${generateImage "data/images/badges/firefox_copy4.gif" "${imagesLocation}/badges" "firefox"}
-${generateImage "data/images/badges/linux2.gif" "${imagesLocation}/badges" "linux"}
-${generateImage "data/images/badges/rss2.gif" "${imagesLocation}/badges" "rss2"}
-${generateImage "data/images/badges/thunderbird_copy1.gif" "${imagesLocation}/badges" "thunderbird"}
+${generateStaticImage "data/images/badges/europe_copy1.png" "${imagesLocation}/badges" "europe"}
+${generateStaticImage "data/images/badges/firefox_copy4.gif" "${imagesLocation}/badges" "firefox"}
+${generateStaticImage "data/images/badges/linux2.gif" "${imagesLocation}/badges" "linux"}
+${generateStaticImage "data/images/badges/rss2.gif" "${imagesLocation}/badges" "rss2"}
+${generateStaticImage "data/images/badges/thunderbird_copy1.gif" "${imagesLocation}/badges" "thunderbird"}
 
 rm -rf $TmpDir/*
 
@@ -210,6 +232,7 @@ ${lib.getExe cobalt} serve --drafts
         generate
         stripCSS
         patternReplace
+        fileExtToMIMEBash
 
         build
         upload
