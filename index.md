@@ -8,20 +8,20 @@ data:
 ## About me
 
 <div class="vcard h-card p-note">
-	Hi, I'm <a class="nickname p-nickname url u-url u-uid" href="{{ site.base_url }}">Duanin2</a>, a high-school student and developer from <span class="country-name p-country-name">Czech Republic</span>.
+	Hi, I'm <a class="nickname p-nickname url u-url u-uid" href="{{ site.base_url }}">Duanin2</a>, a high-school student and a developer from the <span class="country-name p-country-name">Czech Republic</span>.
 	You can contact me through my <a rel="me email u-email" href="mailto:duanin2@duanin2.top">E-mail</a>, <a rel="me" href="https://matrix.to/#/@duanin2:duanin2.top">Matrix</a>, <a rel="me" href="https://t.me/Duanin2">Telegram</a>, <a rel="me" href="https://signal.me/#eu/jgp780MEv-HCrruPL1c219nKk9F8MLPLyZJAUwwDFDv5FWxxCadNjIe3PMLr_oL2">Signal</a> or even <a rel="me" href="sip:duanin2@sip.linphone.org">SIP</a>.
-	I'm also active on my social media accounts, such as my <a rel="me" href="https://mastodon.arch-linux.cz/@duanin2">Mastodon</a>, <a rel="me" href="https://bsky.app/profile/duanin2.top">Bluesky bridged from Mastodon</a>, <a rel="me" href="https://bsky.app/profile/duanin2.bsky.social">Bluesky</a> or my <a rel="me" href="https://spacehey.com/duanin2">spacehey</a>. And finally, you can also find me on <a rel="me" href="https://github.com/duanin2">GitHub</a> & <a rel="me" href="https://duanin2.itch.io">itch.io</a>.
+	I'm also active on my social media accounts, such as my <a rel="me" href="https://mastodon.arch-linux.cz/@duanin2">Mastodon</a>, <a rel="me" href="https://bsky.app/profile/duanin2.top">my primary Bluesky account, which is bridged from Mastodon</a>, <a rel="me" href="https://bsky.app/profile/duanin2.bsky.social">my secondary Bluesky account</a> or my <a rel="me" href="https://spacehey.com/duanin2">SpaceHey account</a>. And finally, you can also find me on <a rel="me" href="https://github.com/duanin2">GitHub</a> & <a rel="me" href="https://duanin2.itch.io">itch.io</a>.
 </div>
 
 ## Interests
 
-Well I'm quite interested in technology[^1], but usually I'm more interested in the software side of things, like programming[^2] and Linux & OSS[^3].
+Well, I'm quite interested in technology[^1], but usually I'm more interested in the software side of things, like programming[^2], Linux & OSS[^3].
 
 ### Programming[^2]
 
-I mainly program in TS[^4] or JS[^5], sometimes even with some HTML[^6] and CSS[^7], but I also know some C#[^8] and PHP[^9].
+I mainly program in TS[^4] or plain JS[^5], but I can also program in C#[^8] and PHP[^9]. I even know some HTML[^6] and CSS[^7].
 
-When I am using HTML[^6] and CSS[^7], I mainly just use plain HTML[^6] and CSS[^7] without any frameworks[^10], because usually I'm making the website as a school assignment and we can't really use any frameworks there and also because I don't really know any frameworks well enough. I also use my JS[^5] plain, except TS[^4].
+When I am using HTML[^6] and CSS[^7], I mainly just use plain HTML[^6] and CSS[^7] without any frameworks[^10], because I'm usually making the website as a school assignment and we can't really use any frameworks there and also because I don't really know any frameworks well enough.
 
 I only really know PHP[^9] and C#[^8], because I learned them at school.
 
@@ -36,7 +36,7 @@ I use Nginx[^17] as a load balancer[^18] reverse proxy[^19].
 
 My laptop[^20] also runs NixOS[^15] with Home Manager[^16].
 I use KDE Plasma 6[^21] as my DE[^22] on it and I manage Plasma[^21]'s configuration using Plasma Manager[^23].
-I use Firefox[^24] with a user.js[^25] as my primary and only web browser.
+I use Firefox[^24] with arkenfox user.js[^25] as my primary and only web browser.
 I use VSCodium[^26] as my code editor.
 
 ## References

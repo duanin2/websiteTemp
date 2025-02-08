@@ -8,9 +8,9 @@ data:
 ## My socials
 
 - <a href="https://mastodon.arch-linux.cz/@duanin2">Mastodon</a>
-	- <a href="https://bsky.app/profile/duanin2.top">Bluesky, bridged from Mastodon</a>
-- <a href="https://bsky.app/profile/duanin2.bsky.social">Bluesky</a>
-- <a href="https://spacehey.com/duanin2">spacehey</a>
+	- <a href="https://bsky.app/profile/duanin2.top">primary Bluesky account, bridged from Mastodon</a>
+- <a href="https://bsky.app/profile/duanin2.bsky.social">secondary Bluesky account</a>
+- <a href="https://spacehey.com/duanin2">SpaceHey</a>
 - <a href="https://github.com/duanin2">GitHub</a>
 - <a rel="me" href="https://duanin2.itch.io">itch.io</a>
 
