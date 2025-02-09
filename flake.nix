@@ -48,7 +48,7 @@ esac
             sortedFiles = "_data/images";
             sortedFile = "${sortedFiles}/${builtins.replaceStrings [ "/" ] [ "-" ] targetDirectory}-${fileName}.yml";
           in ''
-${builtins.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "${lib.getExe imagemagick} ${toString value} ${source} ${formatsLocations.${name}}") formats)}
+${builtins.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "${lib.getExe imagemagick} ${source} -strip ${toString value} ${formatsLocations.${name}}") formats)}
 mkdir -p ${sortedFiles}
 rm -f ${sortedFile}
 for file in $(ls -Sr ${builtins.concatStringsSep " " (lib.mapAttrsToList (_: value: "\"${value}\"") formatsLocations)}); do
