@@ -7,29 +7,15 @@ data:
 
 ## Memberships
 ### Webrings
-{% assign ctp-slug = "duanin2" | url_encode %}
-[&larr;](https://ctp-webr.ing/{{ ctp-slug }}/previous)
-[Catppuccin Webring](https://ctp-webr.ing/)
-[&rarr;](https://ctp-webr.ing/{{ ctp-slug }}/next)
+{% render "webring-link", name: "Catppuccin Webring", slug: "duanin2", prev_url: "https://ctp-webr.ing/SLUG/previous", next_url: "https://ctp-webr.ing/SLUG/next", main_url: "https://ctp-webr.ing/" %}
 
-{% assign cyberworld-slug = "duanin2" | url_encode %}
-[&larr;](https://cyberworld.cartoon-aa.xyz/prev/{{ cyberworld-slug }})
-[Cyber World Webring](https://cyberworld.cartoon-aa.xyz/)
-[&rarr;](https://cyberworld.cartoon-aa.xyz/next/{{ cyberworld-slug }})
+{% render "webring-link", name: "Cyber World Webring", slug: "duanin2", prev_url: "https://cyberworld.cartoon-aa.xyz/prev/SLUG", next_url: "https://cyberworld.cartoon-aa.xyz/next/SLUG", main_url: "https://cyberworld.cartoon-aa.xyz/" %}
 
-{% assign fediring-slug = "duanin2.top" | url_encode %}
-[&larr;](https://fediring.net/previous?host={{ fediring-slug }})
-[Fediring Webring](https://fediring.net/)
-[&rarr;](https://fediring.net/next?host={{ fediring-slug }})
+{% render "webring-link", name: "Fediring Webring", slug: "duanin2.top", prev_url: "https://fediring.net/previous?host=SLUG", next_url: "https://fediring.net/next?host=SLUG", main_url: "https://fediring.net/" %}
 
-[&larr;](https://xn--sr8hvo.ws/previous)
-[IndieWeb Webring](https://xn--sr8hvo.ws)
-[&rarr;](https://xn--sr8hvo.ws/next)
+{% render "webring-link", name: "IndieWeb Webring", slug: "", prev_url: "https://xn--sr8hvo.ws/previous", next_url: "https://xn--sr8hvo.ws/next", main_url: "https://xn--sr8hvo.ws/" %}
 
-{% assign staticquest-slug = "duanin2.top" | url_encode %}
-[&larr;](https://static.quest/previous?host={{ staticquest-slug }})
-[Static.Quest Webring](https://static.quest/)
-[&rarr;](https://static.quest/next?host={{ staticquest-slug }})
+{% render "webring-link", name: "Static.Quest Webring", slug: "duanin2.top", prev_url: "https://static.quest/previous?host=SLUG", next_url: "https://static.quest/next?host=SLUG", main_url: "https://static.quest/" %}
 
 ### Clubs
 - the [1MB Club](https://1mb.club)

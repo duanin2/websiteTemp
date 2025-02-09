@@ -16,7 +16,7 @@ pagination:
 ## All my blog posts!
 
 {% for post in paginator.pages %}
-- #### [{{post.title}}]({{ post.permalink }})
+- ### [{{post.title}}]({{ post.permalink }})
 {% endfor %}
 
 <nav class="pages" aria-label="Pages">
