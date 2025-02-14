@@ -1,6 +1,9 @@
 ---
 title: Webrings & other links
 layout: default.liquid
+
+description: Webrings and clubs I'm a member of and other interesting links
+
 data:
   language: en
 ---

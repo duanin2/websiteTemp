@@ -2,6 +2,8 @@
 title: Home Page
 layout: default.liquid
 
+description: My internet homepage
+
 data:
   language: en
 ---

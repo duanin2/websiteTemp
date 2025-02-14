@@ -2,6 +2,8 @@
 title: Socials & Contact
 layout: default.liquid
 
+description: My social media links and methods for contacting me
+
 data:
   language: en
 ---

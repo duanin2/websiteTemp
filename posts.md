@@ -2,6 +2,8 @@
 title: Posts
 layout: default.liquid
 
+description: All my posts
+
 data:
   language: en
 

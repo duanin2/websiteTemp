@@ -1,7 +1,9 @@
 ---
 layout: default.liquid
-
 title: Attribution & licensing
+
+description: External resources used on this website and licenses for the content and source code of this website
+
 data:
   language: en
 ---
