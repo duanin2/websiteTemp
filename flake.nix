@@ -127,6 +127,7 @@ ${generateStaticImage "${imagesLocation}/buttons/no-ai.png" "${imagesLocation}/b
 ${generateAnimatedImage "data/images/buttons/anything_but_chrome.gif" "${imagesLocation}/buttons" "anything-but-chrome"}
 ${generateStaticImage "data/images/buttons/firefox_now.png" "${imagesLocation}/buttons" "firefox-now"}
 ${generateAnimatedImage "data/images/buttons/blinkiesCafe-badge.gif" "${imagesLocation}/buttons" "blinkiesCafe"}
+${generateStaticImage "data/images/buttons/green-team.gif" "${imagesLocation}/buttons" "green-team-512kb-club"}
 
 ${generateAnimatedImage "data/images/blinkies/blinkiesCafe-qX.gif" "${imagesLocation}/blinkies" "i-love-miku"}
 ${generateAnimatedImage "data/images/blinkies/blinkiesCafe-RX.gif" "${imagesLocation}/blinkies" "adhd"}

@@ -16,6 +16,7 @@ data:
     - `/images/buttons/valid-css.*` is rendered from [vcss](https://jigsaw.w3.org/css-validator/images/vcss) from [W3C CSS validator](https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https://duanin2.top&usermedium=all&vextwarning=&warning=1)
     - `/images/buttons/valid-rss.*` is rendered from [valid-rss-rogers.png](https://validator.w3.org/feed/images/valid-rss-rogers.png) from [W3C RSS validator](https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fduanin2.top/feed.rss)
     - `/images/buttons/no-ai.*` is rendered from the [image pack](https://ai-label.org/image-pack/image-pack.zip) from [AI Label](https://ai-label.org/) licensed under the [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0)
+    - `/images/buttons/green-team-512kb-club.*` is rendered from the green team button at [the 512KB Club](https://512kb.club/faq)
   - `/images/blinkies/*` is rendered from images found in [blinkies.cafe](https://blinkies.cafe/)
     - `/images/blinkies/i-love-miku.*` is rendered from [Miku fan!!](https://blinkies.cafe/?s=0178-mikuwink2) by [Amy](https://graphics-cafe.tumblr.com/) under the [CC BY](https://creativecommons.org/licenses/by/4.0/)
     - `/images/blinkies/adhd.*` is rendered from [ADHD!](https://blinkies.cafe/?s=0264-adhd) by [Proxy&](https://kotatsu.me/)
