@@ -1,14 +1,4 @@
-{% capture name %}{{ imgLocation | replace: "/", "-" }}{% endcapture %}
-<picture>
-{% for file in site.data.images %}
-	{% if file.first == name %}
-		{% for image in file.last %}
-			{% if forloop.last %}
-	<img src="/{{ image.name }}" alt="{{ imgAlt }}" loading="lazy">
-			{% else %}
-	<source srcset="/{{ image.name }}" type="{{ image.type }}">
-			{% endif %}
-		{% endfor %}
-	{% endif %}
-{% endfor %}
-</picture>
+{%- capture name -%}{{ imgLocation | replace: "/", "-" }}{%- endcapture -%}
+<picture>{% for file in site.data.images %}{% if file.first == name %}{% for image in file.last %}
+	{%- if forloop.last -%}<img src="/{{- image.name -}}" alt="{{- imgAlt -}}" loading="lazy">{%- else -%}<source srcset="/{{- image.name -}}" type="{{- image.type -}}">{%- endif -%}
+{% endfor %}{% endif %}{% endfor %}</picture>

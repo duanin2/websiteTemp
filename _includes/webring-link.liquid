@@ -1,4 +1,6 @@
-{% assign slug = slug | url_encode %}
-<a href="{{ prev_url | replace: "SLUG", slug }}" aria-label="{{ name }} previous">&larr;</a>
-[{{ name }}]({{ main_url }})
-<a href="{{ next_url | replace: "SLUG", slug }}" aria-label="{{ name }} next">&rarr;</a>
+{%- assign slug = slug | url_encode -%}
+<div class="ringlink">
+	<a href="{{- prev_url | replace: "SLUG", slug -}}" aria-label="{{- name -}} previous">&larr;</a>
+	<a href="{{- main_url | replace: "SLUG", slug -}}">{{- name -}}</a>
+	<a href="{{- next_url | replace: "SLUG", slug -}}" aria-label="{{- name -}} next">&rarr;</a>
+</div>
