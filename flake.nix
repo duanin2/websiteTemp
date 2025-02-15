@@ -20,6 +20,7 @@
           avif = "image/avif";
           apng = "image/apng";
           gif = "image/gif";
+          svg = "image/svg";
         };
         fileExtToMIMEBash = writeShellScriptBin "file-ext-to-mime" ''
 case "$1" in
@@ -54,6 +55,17 @@ rm -f ${sortedFile}
 for file in $(ls -Sr ${builtins.concatStringsSep " " (lib.mapAttrsToList (_: value: "\"${value}\"") formatsLocations)}); do
   echo -e "- name: $file\n  type: $(${lib.getExe fileExtToMIMEBash} $file)" >> ${sortedFile}
 done
+          '';
+          generateImageFromSVG = extraParams: source: targetDirectory: name: generatorFunction: let
+            SVGFile = "${targetDirectory}/${name}.svg";
+            PNGFile = "${targetDirectory}/${name}.png";
+
+            sortedFile = "_data/images/${builtins.replaceStrings [ "/" ] [ "-" ] targetDirectory}-${name}.yml";
+          in ''
+${inkscapeExport "${extraParams} -l" source SVGFile}
+${inkscapeExport extraParams source PNGFile}
+${generatorFunction PNGFile targetDirectory name}
+echo -e "- name: ${SVGFile}\n  type: $(${lib.getExe fileExtToMIMEBash} ${SVGFile})" >> ${sortedFile}
           '';
           generateStaticImage = source: targetDirectory: name: generateImage source targetDirectory name {
             webp = "-quality 0";
@@ -122,8 +134,7 @@ ${generateIconsColorScheme "dark"}
 
 ${generateTransparentImage "data/images/buttons/valid-rss-rogers.png" "${imagesLocation}/buttons" "valid-rss"}
 ${generateTransparentImage "data/images/buttons/vcss.png" "${imagesLocation}/buttons" "valid-css"}
-${inkscapeExport "-C -h 31" "data/images/buttons/ai-label_banner-no-ai-used.svg" "${imagesLocation}/buttons/no-ai.png"}
-${generateStaticImage "${imagesLocation}/buttons/no-ai.png" "${imagesLocation}/buttons" "no-ai"}
+${generateImageFromSVG "-C -h 31" "data/images/buttons/ai-label_banner-no-ai-used.svg" "${imagesLocation}/buttons" "no-ai" generateStaticImage}
 ${generateAnimatedImage "data/images/buttons/anything_but_chrome.gif" "${imagesLocation}/buttons" "anything-but-chrome"}
 ${generateStaticImage "data/images/buttons/firefox_now.png" "${imagesLocation}/buttons" "firefox-now"}
 ${generateAnimatedImage "data/images/buttons/blinkiesCafe-badge.gif" "${imagesLocation}/buttons" "blinkiesCafe"}
