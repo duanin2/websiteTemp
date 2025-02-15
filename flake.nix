@@ -50,8 +50,6 @@ esac
             sortedFile = "${sortedFiles}/${builtins.replaceStrings [ "/" ] [ "-" ] targetDirectory}-${fileName}.yml";
           in ''
 ${builtins.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "${lib.getExe imagemagick} ${source} -strip ${toString value} ${formatsLocations.${name}}") formats)}
-mkdir -p ${sortedFiles}
-rm -f ${sortedFile}
 for file in $(ls -Sr ${builtins.concatStringsSep " " (lib.mapAttrsToList (_: value: "\"${value}\"") formatsLocations)}); do
   echo -e "- name: $file\n  type: $(${lib.getExe fileExtToMIMEBash} $file)" >> ${sortedFile}
 done
@@ -105,8 +103,8 @@ ${lib.getExe imagemagick} ${getIconLocation colorScheme (getSmallestElement icon
 ${if (builtins.length appleTouchIconSizes) > 0 then "cp ${getIconLocation colorScheme (getLargestElement appleTouchIconSizes) "png"} apple-touch-icon.png" else ""}
           '';
           generateIconsLiquid = colorScheme: "${lib.getExe patternReplace} ${iconsLiquidTemplate} _includes/generated/icons/${colorScheme}.liquid data/replacePatterns/icon-liquid/${colorScheme}.csv";
-          appleTouchIconSizes = builtins.sort (a: b: a > b) [ 180 167 152 120 ];
-          iconSizes = builtins.sort (a: b: a > b) (appleTouchIconSizes ++ [ 192 64 48 32 16 ]);
+          appleTouchIconSizes = sortAscending [ 180 167 152 120 ];
+          iconSizes = sortAscending (appleTouchIconSizes ++ [ 192 64 48 32 16 ]);
           iconsLiquidTemplate = writeText "icons.liquid" ''
 <link rel="icon" type="image/svg+xml" sizes="any" href="/images/icons/{{ color-scheme }}/any.svg">
 ${builtins.concatStringsSep "\n" (map (size: "{% for file in site.data.images.images-icons-dark-${toString size} %}<link rel=\"icon${if (builtins.elem size appleTouchIconSizes) then " apple-touch-icon" else ""}\" sizes=\"${sizeToSizeString size}\" href=\"{{ file.name }}\" type=\"{{ file.type }}\">{% endfor %}") iconSizes)}
@@ -120,6 +118,8 @@ TmpDir=$(mktemp -d)
 echo "Cleaning images..."
 rm -rf ${imagesLocation}/* favicon.ico apple-touch-icon.png
 mkdir -p ${imagesLocation}/{icons/dark,buttons,blinkies,badges}
+rm -rf _data/images/*
+mkdir -p _data/images/
 
 echo "Cleaning styles..."
 rm -rf styles/*
