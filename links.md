@@ -32,4 +32,4 @@ data:
 - [This page is designed to last.](http://jeffhuang.com/designed_to_last/)
 
 ## Johnvertisement
-<iframe class="johnvertisement" src="https://john.citrons.xyz/embed?ref=duanin2.top"></iframe>
+<iframe class="johnvertisement" src="https://john.citrons.xyz/embed?ref=duanin2.top" loading="lazy" referrerpolicy="origin" ></iframe>
