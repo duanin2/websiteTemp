@@ -9,12 +9,16 @@ data:
 ---
 ## My socials
 
-- <a href="https://mastodon.arch-linux.cz/@duanin2">Mastodon</a>
-	- <a href="https://bsky.app/profile/duanin2.top">primary Bluesky account, bridged from Mastodon</a>
-- <a href="https://bsky.app/profile/duanin2.bsky.social">secondary Bluesky account</a>
+- <a href="https://friendica.world/profile/duanin2">Friendica account</a>
+	- primary <a href="https://bsky.app/profile/duanin2.top">Bluesky account</a> cross-posting from Friendica
 - <a href="https://spacehey.com/duanin2">SpaceHey</a>
 - <a href="https://github.com/duanin2">GitHub</a>
 - <a rel="me" href="https://duanin2.itch.io">itch.io</a>
+
+### Unused accounts
+
+- <a href="https://mastodon.arch-linux.cz/@duanin2">Mastodon</a>
+	- <a href="https://bsky.app/profile/duanin2.mastodon.arch-linux.cz.ap.brid.gy">Bluesky account</a> bridged from Mastodon
 
 ## Contact me
 
