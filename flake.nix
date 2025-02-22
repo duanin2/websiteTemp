@@ -20,6 +20,7 @@
           avif = "image/avif";
           apng = "image/apng";
           gif = "image/gif";
+          jxl = "image/jxl";
           svg = "image/svg";
         };
         fileExtToMIMEBash = writeShellScriptBin "file-ext-to-mime" ''
@@ -72,6 +73,7 @@ echo -e "- name: ${SVGFile}\n  type: $(${lib.getExe fileExtToMIMEBash} ${SVGFile
             avif = "";
             apng = "-define PNG:compression-level=9";
             gif = "";
+            jxl = "-quality 50";
           };
           generateTransparentImage = source: targetDirectory: name: generateImage source targetDirectory name {
             webp = "-quality 0";
@@ -79,12 +81,14 @@ echo -e "- name: ${SVGFile}\n  type: $(${lib.getExe fileExtToMIMEBash} ${SVGFile
             avif = "";
             apng = "-define PNG:compression-level=9";
             gif = "";
+            jxl = "-quality 50";
           };
           generateAnimatedImage = source: targetDirectory: name: generateImage source targetDirectory name {
             webp = "-quality 0";
             # avif = "";
             apng = "-define PNG:compression-level=9";
             gif = "";
+            jxl = "-quality 50";
           };
 
           getIconLocation = colorScheme: width: type: "${imagesLocation}/icons/${colorScheme}/${toString width}.${type}";
