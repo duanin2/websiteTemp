@@ -50,8 +50,8 @@ esac
             sortedFiles = "_data/images";
             sortedFile = "${sortedFiles}/${builtins.replaceStrings [ "/" ] [ "-" ] targetDirectory}-${fileName}.yml";
           in ''
-${builtins.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "${lib.getExe imagemagick} ${source} -strip ${toString value} ${formatsLocations.${name}}") formats)}
-for file in $(ls -Sr ${builtins.concatStringsSep " " (lib.mapAttrsToList (_: value: "\"${value}\"") formatsLocations)}); do
+${builtins.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "${lib.getExe imagemagick} ${source} -strip ${toString value} ${formatsLocations.${name}} 2> /dev/null || rm -f ${formatsLocations.${name}}") formats)}
+for file in $(ls -Sr ${builtins.concatStringsSep " " (lib.mapAttrsToList (_: value: "\"${value}\"") formatsLocations)} 2> /dev/null); do
   echo -e "- name: $file\n  type: $(${lib.getExe fileExtToMIMEBash} $file)" >> ${sortedFile}
 done
           '';
