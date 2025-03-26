@@ -1,10 +1,11 @@
 ---
 layout: post.liquid
 title: Hello, World!
+
 published_date: 2025-01-19 14:56:54.311494528 +0000
 is_draft: false
 
-description: My first post
+description: My first post.
 
 categories:
   - General
