@@ -16,7 +16,7 @@ template_extensions:
 site:
   title: Duanin2's Blog
   description: This is my personal blog and website.
-  base_url: https://duanin2.top
+  base_url: https://duanin2.eu
   sitemap: sitemap.xml
   data:
     lang: en_US
