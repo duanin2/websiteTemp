@@ -19,10 +19,28 @@ data:
 {% for ptag in paginator.indexes %}
 <span aria-label="Category {{ ptag.index_title }} with {{ ptag.total_pages }} pages"><a href="/{{ ptag.index_permalink }}/">{{ ptag.index_title }}</a> ({{ ptag.total_pages }})</span>
 {% endfor %}
-{% else %}
-<h1>{{ paginator.index_title }} Date</h1>
-<a href="/{{ page.permalink }}" aria-label="Back to category listing">< Back to date listing</a>
-{% for post in paginator.pages %}
-{% render "directoryitem", post: post %}
-{% endfor %}
+{% elsif paginator.pages %}
+<section class="h-feed">
+  <h1 class="p-name">{{ paginator.index_title }} Date</h1>
+  <a href="/{{ page.permalink }}" aria-label="Back to date listing" rel="directory">&lt; Back to date listing</a>
+  {% for post in paginator.pages %}
+  {% render "directoryitem", post: post %}
+  {% endfor %}
+</section>
 {% endif %}
+<nav class="prevnext" aria-label="Pages">
+  {%- if paginator.previous_index %}
+  <a href="/{{ paginator.first_index_permalink }}" aria-label="First page" rel="prev">&lt;&lt;</a>
+  <a href="/{{ paginator.previous_index_permalink }}" aria-label="Previous page" rel="prev">&lt;</a>
+  {% else %}
+  <div>&lt;&lt;</div>
+  <div>&lt;</div>
+  {% endif %}
+  {%- if paginator.next_index %}
+  <a href="/{{ paginator.next_index_permalink }}" aria-label="Next page" rel="next">&gt;</a>
+  <a href="/{{ paginator.last_index_permalink }}" aria-label="Last page" rel="next">&gt;&gt;</a>
+  {% else %}
+  <div>&gt;</div>
+  <div>&gt;&gt;</div>
+  {% endif %}
+</nav>

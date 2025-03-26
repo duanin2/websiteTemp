@@ -3,8 +3,10 @@
 	{% if post.categories.size > 0 %}
 	<div class="tags">
 		<span>Categories:</span>
+		{% assign category_link = "/categories" %}
 		{% for category in post.categories %}
-		<a href="/categories/{{ category | downcase }}" class="p-category" rel="directory tag">{{ category }}</a>
+		{% capture category_link %}{{ category_link }}/{{ category | downcase }}{% endcapture %}
+		<a href="{{ category_link }}" class="p-category" rel="directory">{{ category }}</a>
 		{% endfor %}
 	</div>
 	{% endif %}
