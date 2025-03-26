@@ -1,0 +1,27 @@
+---
+title: Categories Index
+layout: default.liquid
+
+pagination:
+  include: Categories
+  per_page: 20
+  permalink_suffix: "./{{ num }}/"
+  order: Desc
+  sort_by: ["published_date"]
+
+data:
+  language: en
+---
+
+{% if paginator.indexes %}
+<h1>Categories</h1>
+{% for ptag in paginator.indexes %}
+<span aria-label="Category {{ ptag.index_title }} with {{ ptag.total_pages }} pages"><a href="/{{ ptag.index_permalink }}/">{{ ptag.index_title }}</a> ({{ ptag.total_pages }})</span>
+{% endfor %}
+{% else %}
+<h1>{{ paginator.index_title }} Category</h1>
+<a href="/{{ page.permalink }}" aria-label="Back to category listing">< Back to category listing</a>
+{% for post in paginator.pages %}
+{% render "directoryitem", post: post %}
+{% endfor %}
+{% endif %}

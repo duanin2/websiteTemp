@@ -1,0 +1,15 @@
+---
+title: Posts
+layout: default.liquid
+
+description: All my posts
+
+data:
+  language: en
+---
+<section class="h-feed">
+  <h2 class="p-name">All my blog posts!</h2>
+  {% for post in collections.posts.pages %}
+  {% render "directoryitem", post: post %}
+  {% endfor %}
+</section>
