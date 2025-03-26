@@ -1,6 +1,13 @@
 {%- assign slug = slug | url_encode -%}
-<div class="ringlink">
-	<a href="{{- prev_url | replace: "SLUG", slug -}}" aria-label="{{- name -}} previous">&larr;</a>
-	<a href="{{- main_url | replace: "SLUG", slug -}}">{{- name -}}</a>
-	<a href="{{- next_url | replace: "SLUG", slug -}}" aria-label="{{- name -}} next">&rarr;</a>
-</div>
+<section class="ringlink">
+	<a href="{{- prev_url | replace: "SLUG", slug -}}" aria-label="Previous page in the {{ name -}}" rel="prev">&larr;</a>
+	{%- if main_url == directory_url -%}
+	<a href="{{- main_url | replace: "SLUG", slug -}}" rel="directory" aria-label="Main page and the members list of the {{ name -}}">{{- name -}}</a>
+	{%- elsif directory_url != "" -%}
+	<a href="{{- main_url | replace: "SLUG", slug -}}" aria-label="Main page of the {{ name -}}">{{- name -}}</a>
+	<a href="{{- directory_url | replace: "SLUG", slug -}}" rel="directory" aria-label="The members list of the {{ name -}}">Members</a>
+	{%- else -%}
+	<a href="{{- main_url | replace: "SLUG", slug -}}" aria-label="Main page of the {{ name -}}">{{- name -}}</a>
+	{%- endif -%}
+	<a href="{{- next_url | replace: "SLUG", slug -}}" aria-label="Next page in the {{ name -}}" rel="next">&rarr;</a>
+</section>

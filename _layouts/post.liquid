@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ page.data.language }}" prefix="og: https://ogp.me/ns#">
-  <head>
+  <head profile="http://gmpg.org/xfn/11">
     {% include "head.liquid" %}
     <meta property="og:type" content="article">
     <meta name="article:author" content="duanin2">
@@ -8,18 +8,68 @@
   </head>
   <body>
     {% include "menu.liquid" %}
-    <main class="h-entry">
-      <h1 class="p-name">{{ page.title }}</h1>
-      <p class="published">Published by <a class="p-author h-card" href="{{ site.base_url }}">Duanin2</a>{% if page.is_draft == false %} on <time class="dt-published" datetime="{{ page.published_date | date: "%Y-%m-%d %H:%M:%S%z" }}">{{ page.published_date | date: "%d. %m. %Y at %H:%M in %Z" }}</time>{% endif %}. Post <a class="u-url u-uid" href="{{ site.base_url }}/{{ page.permalink }}">Permalink</a>.</p>
-      <div class="tags">
-      </div>
-      <div class="e-content">
-        {{ page.content }}
-      </div>
-      <nav class="posts" aria-label="Posts">
-        {%- if page.next %}<a href="/{{ page.next.permalink }}" aria-label="previous">&lt;</a>{% else %}<div>&lt;</div>{% endif %}
-        {%- if page.previous %}<a href="/{{ page.previous.permalink }}" aria-label="next">&gt;</a>{% else %}<div>&gt;</div>{% endif %}
-      </nav>
+    <main>
+      <article class="h-entry">
+        <header>
+          <h1 class="p-name">{{ page.title }}</h1>
+          <p class="published">Posted by <a class="p-author h-card" rel="author" href="{{ site.base_url }}">Duanin2</a>.</p>
+          {% if page.is_draft == false %}<p class="published">Posted on <time class="dt-published" datetime="{{ page.published_date | date: "%Y-%m-%d %H:%M:%S%z" }}">{{ page.published_date | date: "%d. %m. %Y at %H:%M in %Z" }}</time>.</p>{% endif %}
+          <p class="published">This posts <a class="u-url u-uid" href="/{{ page.permalink }}">Permalink</a>.</p>
+          {% if page.data.in_reply_to %}{% for parent_post in page.data.in_reply_to %}
+          <p class="published">This post is a reply to <a rel="in-reply-to" class="u-in-reply-to" href="{{ parent_post }}">this post</a>.</p>
+          {% endfor %}{% endif %}
+          {% if page.data.like_of %}{% for parent_post in page.data.like_of %}
+          <p class="published">This post is a like of <a rel="like-of" class="u-like-of" href="{{ parent_post }}">this post</a>.</p>
+          {% endfor %}{% endif %}
+          {% if page.data.repost_of %}{% for parent_post in page.data.repost_of %}
+          <p class="published">This post is a repost of <a rel="repost-of" class="u-repost-of" href="{{ parent_post }}">this post</a>.</p>
+          {% endfor %}{% endif %}
+          {% if page.data.bookmark-of %}{% for parent_post in page.data.bookmark-of %}
+          <p class="published">This post is a repost of <a rel="bookmark-of" class="u-bookmark-of" href="{{ parent_post }}">this post</a>.</p>
+          {% endfor %}{% endif %}
+          {% if page.data.listen_of %}{% for parent_post in page.data.listen_of %}
+          <p class="published">This post is a repost of <a rel="listen-of" class="u-listen-of" href="{{ parent_post }}">trhis post</a>.</p>
+          {% endfor %}{% endif %}
+          {% if page.data.watch_of %}{% for parent_post in page.data.watch_of %}
+          <p class="published">This post is a repost of <a rel="watch-of" class="u-watch-of" href="{{ parent_post }}">this post</a>.</p>
+          {% endfor %}{% endif %}
+          {% if page.data.read_of %}{% for parent_post in page.data.read_of %}
+          <p class="published">This post is a repost of <a rel="read-of" class="u-read-of" href="{{ parent_post }}">this post</a>.</p>
+          {% endfor %}{% endif %}
+          {% if page.data.translation_of %}{% for parent_post in page.data.translation_of %}
+          <p class="published">This post is a repost of <a rel="translation-of" class="u-translation-of" href="{{ parent_post }}">this post</a>.</p>
+          {% endfor %}{% endif %}
+          {% if page.data.review_of %}{% for parent_post in page.data.review_of %}
+          <p class="published">This post is a repost of <a rel="review-of" class="u-review-of" href="{{ parent_post }}">this post</a>.</p>
+          {% endfor %}{% endif %}
+          {% if page.categories.size > 0 %}
+          <div class="tags">
+            <span>Categories:</span>
+            {% for category in page.categories %}
+            <a href="/categories/{{ category | downcase }}" class="p-category" rel="directory tag">{{ category }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </header>
+        <main class="e-content">
+          {{ page.content }}
+        </main>
+        <footer>
+          {% if page.tags %}
+          <div class="tags">
+            <span>Tags:</span>
+            {% for tag in page.tags %}
+            <span>#<a href="/tags/{{ tag | downcase }}" class="p-category" rel="directory tag">{{ tag }}</a></span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <nav class="prevnext" aria-label="Posts">
+            {%- if page.previous %}<a href="/{{ page.previous.permalink }}" aria-label="Previous" rel="prev">&lt;</a>{% else %}<div>&lt;</div>{% endif %}
+            <a href="/allposts.html" rel="directory">Post Archive</a>
+            {%- if page.next %}<a href="/{{ page.next.permalink }}" aria-label="Next" rel="next">&gt;</a>{% else %}<div>&gt;</div>{% endif %}
+          </nav>
+        </footer>
+      </article>
     </main>
     {% include "footer.liquid" %}
   </body>

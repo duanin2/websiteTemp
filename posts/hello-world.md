@@ -6,6 +6,13 @@ is_draft: false
 
 description: My first post
 
+categories:
+  - General
+tags:
+  - FirstPost
+  - Internet
+  - HelloWorld
+
 data:
   language: en
 ---

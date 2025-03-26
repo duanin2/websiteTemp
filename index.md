@@ -9,10 +9,12 @@ data:
 ---
 ## About me
 
-<div class="vcard h-card p-note">
-	Hi, I'm <a class="nickname p-nickname url u-url u-uid" href="{{ site.base_url }}">Duanin2</a>, a high-school student and a developer from the <span class="country-name p-country-name">Czech Republic</span>.
-	You can contact me through my <a rel="me email u-email" href="mailto:duanin2@duanin2.top">E-mail</a>, <a rel="me" href="https://matrix.to/#/@duanin2:duanin2.top">Matrix</a>, <a rel="me" href="https://t.me/Duanin2">Telegram</a>, <a rel="me" href="https://signal.me/#eu/jgp780MEv-HCrruPL1c219nKk9F8MLPLyZJAUwwDFDv5FWxxCadNjIe3PMLr_oL2">Signal</a> or even <a rel="me" href="sip:duanin2@sip.linphone.org">SIP</a>.
-	I'm also active on my social media accounts, such as my <a rel="me" href="https://friendica.world/profile/duanin2">Friendica account</a>, my primary <a rel="me" href="https://bsky.app/profile/duanin2.top">Bluesky account</a>, which cross-posts from Friendica or my <a rel="me" href="https://spacehey.com/duanin2">SpaceHey account</a>. And finally, you can also find me on <a rel="me" href="https://github.com/duanin2">GitHub</a> & <a rel="me" href="https://duanin2.itch.io">itch.io</a>. I've also got my old <a rel="me" href="https://mastodon.arch-linux.cz/@duanin2">Mastodon account</a> or the <a rel="me" href="https://bsky.app/profile/duanin2.mastodon.arch-linux.cz.ap.brid.gy">my  Bluesky account</a>, which is bridged from the Mastodon account.
+<div class="vcard h-card">
+	<span class="p-note note">
+		Hi, I'm <a class="nickname p-nickname url u-url u-uid" href="{{ site.base_url }}">Duanin2</a>, a high-school student and a developer from the <span class="country-name p-country-name">Czech Republic</span>.
+		You can contact me through my <a rel="me" class="u-url email u-email" href="mailto:duanin2@duanin2.top">E-mail</a>, <a rel="me" class="u-url" href="https://matrix.to/#/@duanin2:duanin2.top">Matrix</a>, <a rel="me" class="u-url" href="https://t.me/Duanin2">Telegram</a>, <a rel="me" class="u-url" href="https://signal.me/#eu/jgp780MEv-HCrruPL1c219nKk9F8MLPLyZJAUwwDFDv5FWxxCadNjIe3PMLr_oL2">Signal</a> or even <a rel="me" class="u-url" href="sip:duanin2@sip.linphone.org">SIP</a>.
+		I'm also active on my social media accounts, such as my <a rel="me" class="u-url" href="https://friendica.world/profile/duanin2">Friendica account</a>, my primary <a rel="me" class="u-url" href="https://bsky.app/profile/duanin2.top">Bluesky account</a>, which cross-posts from Friendica or my <a rel="me" class="u-url" href="https://spacehey.com/duanin2">SpaceHey account</a>. And finally, you can also find me on <a rel="me" class="u-url" href="https://github.com/duanin2">GitHub</a> & <a rel="me" class="u-url" href="https://duanin2.itch.io">itch.io</a>. I've also got my old <a rel="me" class="u-url" href="https://mastodon.arch-linux.cz/@duanin2">Mastodon account</a> or the <a rel="me" class="u-url" href="https://bsky.app/profile/duanin2.mastodon.arch-linux.cz.ap.brid.gy">my  Bluesky account</a>, which is bridged from the Mastodon account.
+	</span>
 </div>
 
 ## Interests

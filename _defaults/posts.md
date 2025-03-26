@@ -4,6 +4,9 @@ layout: post.liquid
 title: First Post
 is_draft: true
 
+tags:
+categories:
+
 data:
   language: en
 ---
